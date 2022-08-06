@@ -26,5 +26,81 @@ a {
     overflow: hidden;
 }
 
-body {
+.list-reset {
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
+
+.flex {
+    display: flex;
+}
+
+body {}
+
+.container {
+    /* max-width: 1920px; */
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.section-header__container {
+    align-items: center;
+}
+
+.section-header__logo {
+    width: 100px;
+}
+
+.section-header__header {}
+
+.section-header__city {}
+
+.section-header__menu {}
+
+.section-header__menu-item {}
+
+.section-one {}
+
+.section-one__container {
+    justify-content: center;
+}
+
+.section-one__rockstar {
+    width: 50%;
+}
+
+.rockstar-orel {}
+
+.rockstar-bryansk {
+    display: none;
+}
+
+
+/* footer */
+
+.section-footer {}
+
+.section-footer__container {
+    background-color: #9d9d9d;
+    justify-content: space-between;
+}
+
+.section-footer__one {
+    height: 300px;
+}
+
+.section-footer__two {}
+
+.section-footer__logo {
+    width: 400px;
+    height: fit-content;
+}
+
+.section-footer__three {
+    flex-direction: column;
+}
+
+.section-footer__social {}
+
+.section-footer__social-vk {}
