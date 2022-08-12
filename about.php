@@ -7,22 +7,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Cache-Control" content="no-cache">
     <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/style_index.css">
+    <link rel="stylesheet" href="/css/style_about.css">
     <link rel="stylesheet" href="/css/normalize.css">
     <link rel="shortcut icon" href="/img/logo.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
     <title>Караоке бар Rock-star</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script type="text/javascript" src="/js/header.js"></script>
+    <script src="/js/header.js"></script>
 </head>
 
 <body>
 
 <?php include 'header.html';?>
-<main id="index">
-  <div class="section-index">
-    <div class="container section-index__container">
-      <h2 class="header section-index__header">Главная</h2>
+<main id="about">
+  <div class="section-about">
+    <div class="container section-about__container">
+      <h2 class="header section-about__header">О нас</h2>
     </div>
   </div>
 </main>

@@ -66,6 +66,7 @@ body {
 .container {
     max-width: 1920px;
     margin: 0 auto;
+    overflow: hidden;
 }
 
 
@@ -73,7 +74,6 @@ body {
 
 .active-item {
     color: #FF2E00;
-    ;
 }
 
 .section-header__container {

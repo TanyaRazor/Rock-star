@@ -1,13 +1,13 @@
-/* section-index */
+/* section-gallery */
 
-.section-index {}
+.section-gallery {}
 
-.section-index__container {
+.section-gallery__container {
     height: 2233px;
     background-color: #222;
 }
 
-.section-index__header {
+.section-gallery__header {
     padding: 5px;
     margin-top: 30px;
     color: white;
