@@ -1,60 +1,15 @@
-<!DOCTYPE html>
-<html lang="ru">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/normalize.css">
-    <link rel="shortcut icon" href="/img/logo.png" type="image/x-icon">
-    <title>Караоке бар Rock-star</title>
-</head>
-
-<body>
-    <header class="section-header">
-        <div class="container section-header__container flex">
-            <a href="#">
-                <img src="/img/logo.png" alt="" class="section-header__logo">
-            </a>
-            <h1 class="section-header__header">Караоке бар Rock-star</h1>
-            <select name="city" id="" class="section-header__city">
-              <option value="Орёл">Орёл</option>
-              <option value="Брянск">Брянск</option>
-            </select>
-            <nav class="section-header__menu flex">
-                <a href="index.html" class="section-header__menu-item">Главная</a>
-                <a href="" class="section-header__menu-item">Мероприятия</a>
-                <a href="" class="section-header__menu-item">Каталог песен</a>
-                <a href="" class="section-header__menu-item">Галерея</a>
-                <a href="" class="section-header__menu-item">О нас</a>
-            </nav>
-        </div>
-    </header>
-
-    <main>
-        <div class="section-one">
-            <div class="container section-one__container flex">
-                <img class="section-one__rockstar rockstar-orel" src="/img/орел.jpg" alt="Караоке бар Rack-star Орел">
-                <img class="section-one__rockstar rockstar-bryansk" src="/img/брянск.jpg" alt="Караоке бар Rack-star Брянск">
-            </div>
-            <p>
-            </p>
-        </div>
-    </main>
-
-    <footer class="section-footer">
+<footer class="section-footer">
         <div class="container section-footer__container flex">
             <div class="section-footer__one flex">
                 <ul class="section-footer__list list-reset">
                     <li class="section-footer__list-item">
-                        <a href="index.html" class="section-footer__item-menu">Главная</a>
+                        <a href="index.php" class="section-footer__item-menu">Главная</a>
                     </li>
                     <li class="section-footer__list-item">
-                        <a href="" class="section-footer__item-menu">Мероприятия</a>
+                        <a href="events.php" class="section-footer__item-menu">Мероприятия</a>
                     </li>
                     <li class="section-footer__list-item">
-                        <a href="" class="section-footer__item-menu">Каталог песен</a>
+                        <a href="catalog.php" class="section-footer__item-menu">Каталог песен</a>
                     </li>
                     <li class="section-footer__list-item">
                         <a href="" class="section-footer__item-menu">Галерея</a>
@@ -64,18 +19,26 @@
                     </li>
                 </ul>
             </div>
-            <div class="section-footer__two flex">
+            <div class="section-footer__two">
                 <img src="/img/Лого_Орел.png" alt="" class="section-footer__logo">
             </div>
             <div class="section-footer__three flex">
-                <p class="section-footer__adress">
+                <p class="section-footer__address">
                     г. Орел, ул. Черкасская, 41
                 </p>
-                <p class="section-footer__mode">
-                    График работы: <br> Вс-чт: 18:00-02:00 <br> Пт-сб: 18:00-06:00
-                </p>
+                <div class="section-footer__mode flex">
+                    <h4 class="section-footer__mode-header">
+                        График работы:
+                    </h4>
+                    <div class="section-footer__mode-text">
+                        Вс-чт: 18:00-02:00
+                    </div>
+                    <div class="section-footer__mode-text">
+                        Пт-сб: 18:00-06:00
+                    </div>
+                </div>
                 <p class="section-footer__phone">
-                    <a href="tel:+79910953420">
+                    <a class="section-footer_phone-number" href="tel:+79910953420">
                       Тел: +7 (991) 095-34-20
                   </a>
                 </p>
@@ -87,7 +50,3 @@
             </div>
         </div>
     </footer>
-
-</body>
-
-</html>
