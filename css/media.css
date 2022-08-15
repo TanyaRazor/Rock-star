@@ -1,0 +1,118 @@
+@media (min-width: 1200px) and (max-width: 1400px) {
+    .header {
+        font-size: 55px;
+        line-height: 67px;
+        padding: 5px;
+        margin-top: 24px;
+    }
+    .container {
+        max-width: 1000px;
+    }
+    /* header */
+    .section-header__header {
+        font-size: 20px;
+        line-height: 24px;
+        padding: 5px;
+        margin-left: 0;
+    }
+    .section-header__logo {
+        margin-left: 38px;
+        margin-right: 28px;
+        width: 74px;
+    }
+    .section-header__city {
+        margin: 0;
+        margin-left: 29px;
+        margin-right: 29px;
+        font-size: 24px;
+        line-height: 29px;
+    }
+    .section-header__menu {
+        margin: 0;
+        font-size: 12px;
+        line-height: 15px;
+        margin-right: 25px;
+    }
+    .section-header__menu-item:not(:last-child) {
+        margin-right: 10px;
+    }
+    /* footer */
+    .section-footer__container {
+        height: 340px;
+    }
+    .section-footer__one {
+        font-size: 20px;
+        line-height: 24px;
+    }
+    .section-footer__list {
+        margin-top: 33px;
+        margin-left: 35px;
+    }
+    .section-footer__list-item:not(:last-child) {
+        margin-bottom: 7px;
+    }
+    .section-footer__two {
+        margin: 33px 52px 0 101px;
+    }
+    .section-footer__logo {
+        height: 274px;
+    }
+    .section-footer__three {
+        margin-top: 33x;
+        margin-right: 40px;
+    }
+    .section-footer__address {
+        margin: 0;
+        font-size: 14px;
+        line-height: 17px;
+    }
+    .section-footer__mode {
+        margin-top: 33px;
+        margin-bottom: 20px;
+    }
+    .section-footer__mode-header {
+        font-size: 18px;
+        line-height: 22px;
+        padding: 5px 0 5px 0;
+    }
+    .section-footer__mode-text {
+        font-size: 14px;
+        line-height: 17px;
+    }
+    .section-footer__mode-text:not(:last-child) {
+        margin-bottom: 5px;
+    }
+    .section-footer__phone {
+        font-size: 14px;
+        line-height: 17px;
+    }
+    .section-footer_phone-number {
+        padding: 5px 0 5px 0;
+    }
+    .section-footer__social {
+        margin-top: 73px;
+    }
+    .section-footer__social-vk {
+        width: 22px;
+    }
+    /* index */
+    .section-index__container {
+        height: 1282px;
+    }
+    /* events */
+    .section-events__container {
+        height: 1282px;
+    }
+    /* catalog */
+    .section-catalog__container {
+        height: 1282px;
+    }
+    /* gallery */
+    .section-gallery__container {
+        height: 1282px;
+    }
+    /* about */
+    .section-about__container {
+        height: 1282px;
+    }
+}

@@ -222,3 +222,98 @@ body {
 .section-footer__social-vk path {
     fill: #0029FF;
 }
+
+
+/* section-index */
+
+.section-index {}
+
+.section-index__container {
+    height: 2233px;
+    background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(../img/фон.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.section-index__header {
+    padding: 5px;
+    margin-top: 30px;
+    color: white;
+}
+
+
+/* section-events */
+
+.section-events {}
+
+.section-events__container {
+    height: 2233px;
+    background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(../img/афиши/23-04-2022.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.section-events__header {
+    padding: 5px;
+    margin-top: 30px;
+    color: white;
+}
+
+
+/* section-catalog */
+
+.section-catalog {}
+
+.section-catalog__container {
+    height: 2233px;
+    background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(../img/fon-katalog.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.section-catalog__header {
+    padding: 5px;
+    margin-top: 30px;
+    color: white;
+}
+
+
+/* section-gallery */
+
+.section-gallery {}
+
+.section-gallery__container {
+    height: 2233px;
+    background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(../img/фон.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.section-gallery__header {
+    padding: 5px;
+    margin-top: 30px;
+    color: white;
+}
+
+
+/* section-about */
+
+.section-about {}
+
+.section-about__container {
+    height: 2233px;
+    background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(../img/фон.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.section-about__header {
+    padding: 5px;
+    margin-top: 30px;
+    color: white;
+}
