@@ -33,6 +33,7 @@
     }
     .section-header__burger-menu-icon {
         position: relative;
+        display: flex;
         margin-right: 20px;
     }
     .section-header__burger {
@@ -41,7 +42,7 @@
         height: 416px;
         width: 205px;
         top: 13px;
-        left: 480px;
+        left: 512px;
         background-color: #DDDDDD;
     }
     .section-header__burger-menu {
