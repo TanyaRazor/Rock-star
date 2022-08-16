@@ -66,7 +66,6 @@ body {
 .container {
     max-width: 1920px;
     margin: 0 auto;
-    overflow: hidden;
 }
 
 
@@ -78,12 +77,12 @@ body {
 
 .section-header__container {
     align-items: center;
-    justify-content: space-between;
+    position: relative;
 }
 
 .section-header__logo {
     margin-left: 30px;
-    margin-right: 50px;
+    margin-right: 25px;
     width: 100px;
 }
 
@@ -93,13 +92,12 @@ body {
     font-weight: 900;
     font-size: 48px;
     line-height: 59px;
-    padding: 5px;
-    margin-left: -50px;
+    padding: 15px;
 }
 
 .section-header__city {
-    margin-left: 50px;
-    margin-right: 80px;
+    margin-left: 115px;
+    margin-right: 135px;
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 400;
@@ -109,6 +107,7 @@ body {
 
 .section-header__burger {
     display: none;
+    position: absolute;
 }
 
 .section-header__burger-menu-icon {

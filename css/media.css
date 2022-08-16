@@ -7,9 +7,14 @@
     }
     .container {
         max-width: 600px;
+        margin: 0 auto;
     }
     /* header */
-    .section-header__header-container {}
+    .section-header__container {
+        position: relative;
+        align-items: center;
+        height: 52px;
+    }
     .section-header__header {
         font-size: 12px;
         line-height: 15px;
@@ -31,25 +36,16 @@
     .section-header__menu {
         display: none;
     }
-    .section-header__burger-menu-icon {
-        position: relative;
-        display: flex;
-        margin-right: 20px;
-    }
-    .section-header__burger {
-        display: none;
-        position: absolute;
-        height: 416px;
-        width: 205px;
-        top: 13px;
-        left: 512px;
-        background-color: #DDDDDD;
-    }
     .section-header__burger-menu {
         flex-direction: column;
         align-items: flex-end;
         font-size: 12px;
         line-height: 15px;
+        font-weight: 900;
+    }
+    .section-header__burger-menu-icon {
+        display: inline;
+        margin-right: 20px;
     }
     .section-header__burger-one {
         margin-left: 15px;
@@ -65,8 +61,10 @@
         align-items: flex-end;
         margin-left: 54px;
         margin-top: 15px;
+        color: #333333;
     }
     .section-header__burger-header {
+        margin-top: -5px;
         font-size: 20px;
         line-height: 24px;
     }
@@ -78,6 +76,15 @@
     .section-header__menu-item:not(:last-child) {
         margin-right: 0;
         margin-bottom: 15px;
+    }
+    .section-header__burger {
+        display: none;
+        position: absolute;
+        height: 416px;
+        width: 205px;
+        top: 0;
+        right: 0;
+        background-color: rgba(255, 255, 255, 0.92);
     }
     /* footer */
     .section-footer__container {
@@ -180,8 +187,8 @@
         margin-left: 0;
     }
     .section-header__logo {
-        margin-left: 14px;
-        margin-right: 8px;
+        margin-left: 20px;
+        margin-right: 30px;
         width: 39px;
     }
     .section-header__city {
@@ -191,7 +198,7 @@
         font-size: 24px;
         line-height: 29px;
     }
-    .section-header__burger {
+    .section-header__burger-all {
         display: none;
     }
     .section-header__burger-menu-icon {
@@ -204,7 +211,7 @@
         margin-right: 24px;
     }
     .section-header__menu-item:not(:last-child) {
-        margin-right: 5px;
+        margin-right: 10px;
     }
     /* footer */
     .section-footer__container {
@@ -307,13 +314,12 @@
     }
     .section-header__logo {
         margin-left: 38px;
-        margin-right: 28px;
+        margin-right: 38px;
         width: 74px;
     }
     .section-header__city {
-        margin: 0;
-        margin-left: 29px;
-        margin-right: 29px;
+        margin-left: 43px;
+        margin-right: 43px;
         font-size: 24px;
         line-height: 29px;
     }
