@@ -107,6 +107,14 @@ body {
     line-height: 29px;
 }
 
+.section-header__burger {
+    display: none;
+}
+
+.section-header__burger-menu-icon {
+    display: none;
+}
+
 .section-header__menu {
     font-family: 'Montserrat';
     font-style: normal;
