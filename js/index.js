@@ -6,4 +6,6 @@ $(function() {
         $('.section-header__burger').hide();
     });
 
+    $(window).on('resize', function() { $('.section-header__burger').hide(); });
+
 });
