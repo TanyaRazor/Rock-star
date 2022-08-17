@@ -8,7 +8,7 @@
 <?php include 'header.html';?>
 <main id="about">
   <div class="section-about">
-    <div class="container section-about__container">
+    <div class="container-fluid section-about__container">
       <h2 class="header section-about__header">О нас</h2>
     </div>
   </div>

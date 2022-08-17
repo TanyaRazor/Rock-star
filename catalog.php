@@ -8,8 +8,7 @@
 
 <main id="catalog">
   <div class="section-catalog">
-    <div class="container section-catalog__container">
-
+    <div class="container-fluid section-catalog__container">
       <h2 class="header section-catalog__header">Каталог песен</h2>
 
     </div>
