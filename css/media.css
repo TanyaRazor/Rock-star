@@ -164,6 +164,17 @@
         height: 100%;
         min-height: 700px;
     }
+    .section-index__content {
+        font-weight: 500;
+        font-size: 10px;
+        line-height: 12px;
+        margin-top: 26px;
+    }
+    .section-index__content-p {
+        margin: 0 20px;
+        text-align: justify;
+        margin-bottom: 20px;
+    }
     /* events */
     .section-events__container {
         height: 100%;
@@ -355,6 +366,17 @@
     .section-index__container {
         min-height: 635px;
     }
+    .section-index__content {
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 20px;
+        margin-top: 20px;
+    }
+    .section-index__content-p {
+        margin: 0 31px;
+        text-align: justify;
+        margin-bottom: 15px;
+    }
     /* events */
     .section-events__container {
         min-height: 635px;
@@ -540,6 +562,17 @@
     .section-index__container {
         min-height: 766px;
     }
+    .section-index__content {
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 24px;
+        margin-top: 25px;
+    }
+    .section-index__content-p {
+        margin: 0 56px;
+        text-align: justify;
+        margin-bottom: 25px;
+    }
     /* events */
     .section-events__container {
         min-height: 766px;
@@ -679,6 +712,17 @@
     .section-index__container {
         min-height: 1100px;
     }
+    .section-index__content {
+        font-weight: 700;
+        font-size: 35px;
+        line-height: 42px;
+        margin-top: 35px;
+    }
+    .section-index__content-p {
+        margin: 0 98px;
+        text-align: justify;
+        margin-bottom: 30px;
+    }
     /* events */
     .section-events__container {
         min-height: 1100px;
@@ -811,6 +855,16 @@
     .section-index__container {
         min-height: 1282px;
     }
+    .section-index__content {
+        font-size: 41px;
+        line-height: 50px;
+        margin-top: 50px;
+    }
+    .section-index__content-p {
+        margin: 0 122px;
+        text-align: justify;
+        margin-bottom: 35px;
+    }
     /* events */
     .section-events__container {
         min-height: 1282px;
@@ -941,6 +995,16 @@
     /* index */
     .section-index__container {
         min-height: 1540px;
+    }
+    .section-index__content {
+        font-size: 51px;
+        line-height: 62px;
+        margin-top: 42px;
+    }
+    .section-index__content-p {
+        margin: 0 96px;
+        text-align: justify;
+        margin-bottom: 30px;
     }
     /* events */
     .section-events__container {

@@ -252,6 +252,25 @@ body {
     color: white;
 }
 
+.section-index__content {
+    font-weight: 900;
+    font-size: 60px;
+    line-height: 73px;
+    align-items: center;
+    color: #E5E5E5;
+    margin-top: 130px;
+}
+
+.section-index__content-p {
+    margin: 0 170px;
+    text-align: justify;
+    margin-bottom: 160px;
+}
+
+.section-index__content-p:first-child {
+    text-align: center;
+}
+
 
 /* section-events */
 
