@@ -111,6 +111,7 @@ body {
 .section-header__burger {
     display: none;
     position: absolute;
+    z-index: 5;
 }
 
 .section-header__burger-menu-icon {
