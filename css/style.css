@@ -278,16 +278,40 @@ body {
 
 .section-events__container {
     min-height: 2233px;
-    background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(../img/афиши/23-04-2022.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
+    padding: 0;
+}
+
+.section-events__fon {
+    position: relative;
+    line-height: 0;
+    min-height: inherit;
+}
+
+.section-events__fon-img {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    object-fit: fill;
+}
+
+.section-events__fon::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: transparent;
+    background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
 }
 
 .section-events__header {
     padding: 5px;
     margin-top: 30px;
     color: white;
+    z-index: 3;
+    position: absolute;
 }
 
 
