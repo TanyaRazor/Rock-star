@@ -10,19 +10,31 @@
   <div class="section-index">
     <div class="container-fluid section-index__container">
       <h2 class="header section-index__header">Главная</h2>
-      <div class="section-index__content">
-        <p class="section-index__content-p">
-          Дорогой друг!!!
-        </p>
-        <p class="section-index__content-p">
-          Тебя приветствует самый безбашенный караоке бар Черноземья.
-        </p>
-        <p class="section-index__content-p">
-          Хочешь прекрасно провести вечер в замечательной атмосфере рок-бара под хорошую музыку (директор Брянского отделения бара Алексей Симон Симоненко: "Чем мы отличаемся от обычного караоке бара? В обычном караоке-баре люди плохо поют плохие песни, а в нашем баре плохо поют, но хорошие песни.")?
-        </p>
-        <p class="section-index__content-p">
-          Мы работаем для вас ежедневно с воскресенья по четверг с 18:00 до 2:00, в пятницу и субботу с 18:00 до 6:00. А, если повезет, то и еще на какой-нибудь крутой концерт попадете! :)
-        </p>
+      <div class="section-index__content flex">
+        <div class="section-index__one">
+          <p class="section-index__content-p">
+            Дорогой друг!!!
+          </p>
+          <p class="section-index__content-p">
+            Тебя приветствует самый безбашенный караоке бар Черноземья.
+          </p>
+          <p class="section-index__content-p">
+            Хочешь прекрасно провести вечер в замечательной атмосфере рок-бара под хорошую музыку (директор Брянского отделения бара Алексей Симон Симоненко: "Чем мы отличаемся от обычного караоке бара? В обычном караоке-баре люди плохо поют плохие песни, а в нашем баре плохо поют, но хорошие песни.")?
+          </p>
+          <p class="section-index__content-p">
+            Мы работаем для вас ежедневно с воскресенья по четверг с 18:00 до 2:00, в пятницу и субботу с 18:00 до 6:00. А, если повезет, то и еще на какой-нибудь крутой концерт попадете! :)
+          </p>
+        </div>
+        <div class="section-index__two flex">
+          <a href="events.php" class="section-index__two-link">
+            <h2 class="section-index__two-header">
+               Наши мероприятия
+            </h2>
+          </a>
+          <div class="section-index__two-afisha">
+            <?php include 'request.php';?>
+          </div>
+        </div>
       </div>
     </div>
   </div>
