@@ -170,12 +170,15 @@
         line-height: 10px;
         margin-top: 23px;
     }
+    .section-index__one {
+        max-width: 35%;
+    }
     .section-index__content-p {
         margin-bottom: 8px;
     }
     .section-index__two {
-        width: 70px;
-        max-height: 400px;
+        width: 120px;
+        max-height: 500px;
     }
     .section-index__two-link {}
     .section-index__two-header {
@@ -185,12 +188,12 @@
         margin: 5px 0 10px 0;
     }
     .section-index__two-afisha {
-        max-height: 400px;
+        max-height: 500px;
     }
     .section-index__afisha {
-        width: 44px;
-        height: 37px;
-        margin-bottom: 10px;
+        width: 97px;
+        height: 91px;
+        margin-bottom: 15px;
     }
     .section-index__afisha-img {}
     /* events */
