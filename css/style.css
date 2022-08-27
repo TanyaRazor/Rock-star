@@ -254,9 +254,8 @@ body {
 }
 
 .section-index__one {
-    max-width: 762px;
-    /* margin-left: 427px; */
-    margin-right: 197px;
+    max-width: 50%;
+    margin-right: 15%;
 }
 
 .section-index__content {
@@ -279,7 +278,7 @@ body {
 }
 
 .section-index__two {
-    min-width: 534px;
+    width: 534px;
     max-height: 320vh;
     flex-direction: column;
     align-items: center;
@@ -289,15 +288,22 @@ body {
 .section-index__two-link {}
 
 .section-index__two-header {
+    text-align: center;
     font-weight: 900;
     font-size: 42px;
     line-height: 51px;
-    margin: 34px 34px 40px 34px;
+    margin: 34px 34px 40px 0;
 }
 
 .section-index__two-afisha {
-    overflow: auto;
+    overflow-y: auto;
     max-height: 1430px;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.section-index__two-afisha::-webkit-scrollbar {
+    display: none;
 }
 
 .section-index__afisha {
