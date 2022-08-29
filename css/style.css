@@ -28,6 +28,11 @@ p {
     padding: 0;
 }
 
+legend {
+    float: none;
+    width: auto;
+}
+
 .visually-hidden {
     position: absolute !important;
     clip: rect(1px 1px 1px 1px);
@@ -437,4 +442,38 @@ body {
     text-indent: 70px;
     margin: 0 160px;
     margin-bottom: 70px;
+}
+
+.section-admin {}
+
+.section-admin__container {
+    min-height: 2233px;
+    background-color: antiquewhite;
+    color: #333333;
+}
+
+.fielset {
+    width: fit-content;
+    border: 1px solid #333333;
+    flex-direction: column;
+}
+
+.all_input {
+    display: flex;
+}
+
+.input {
+    margin-right: 20px;
+}
+
+.input__label {
+    flex-direction: column;
+}
+
+#costs {
+    margin-top: 5px;
+}
+
+.btn_add_concert {
+    width: fit-content;
 }

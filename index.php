@@ -32,7 +32,16 @@
             </h2>
           </a>
           <div class="section-index__two-afisha">
-            <?php include 'request.php';?>
+            <?php include 'request.php';
+
+            foreach ($res_array as $res) {
+              foreach ($res as $result) {
+                $date = $result['Дата'];
+                $name = $result['Группа'];
+
+              }
+                echo "<div class=\"section-index__afisha flex\"><img class=\"section-index__afisha-img\" src=\"$dir$date.jpg\" alt=\"$name\"/></div>";
+            }?>
           </div>
         </div>
       </div>
