@@ -447,23 +447,31 @@ body {
 .section-admin {}
 
 .section-admin__container {
-    min-height: 2233px;
+    width: 70%;
+    max-height: 2233px;
     background-color: antiquewhite;
     color: #333333;
 }
 
-.fielset {
-    width: fit-content;
+.fieldset {
+    width: 100%;
     border: 1px solid #333333;
     flex-direction: column;
 }
 
-.all_input {
-    display: flex;
+.table {
+    vertical-align: middle;
 }
 
-.input {
+.all_input {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.input,
+select {
     margin-right: 20px;
+    width: fit-content;
 }
 
 .input__label {
@@ -474,6 +482,41 @@ body {
     margin-top: 5px;
 }
 
-.btn_add_concert {
+.btn_concert {
+    align-self: end;
     width: fit-content;
+    height: fit-content;
 }
+
+.fielset-edit {
+    margin: 0 auto;
+    width: fit-content;
+    border: 1px solid #333333;
+}
+
+.all_input-edit {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+}
+
+.input_edit {
+    margin-bottom: 20px;
+}
+
+
+/* table {
+    text-align: center;
+    border-collapse: collapse;
+    margin-bottom: 15px;
+}
+
+td {
+    border-bottom: 1px solid black;
+}
+
+tr,
+td,
+th {
+    padding: 5px;
+} */

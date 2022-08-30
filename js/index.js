@@ -9,8 +9,52 @@ $(function() {
     $(window).on('resize', function() { $('.section-header__burger').hide(); });
 
     // theRotator();
+
+
+
 });
 
+function toggleButton() {
+    $input_city = $('#input_city').val();
+    $select_country = $('#countries').val();
+
+    $input_agent = $('#agent').val();
+    $input_phone = $('#phone').val();
+    $select_city = $('#cities').val();
+
+    $name_group = $('#group').val();
+    $select_agent = $('#agents').val();
+
+    $date = $('#date').val();
+    $groups = $('#groups_select').val();
+    $type_concert = $('#type_concert').val();
+    $conditions = $('#conditions').val();
+    $status = $('#status').val();
+
+    if ($input_city && $select_country) {
+        $('.add_city').attr('disabled', false);
+    } else {
+        $('.add_city').attr('disabled', true);
+    }
+
+    if ($input_agent && $input_phone && $select_city) {
+        $('.add_agent').attr('disabled', false);
+    } else {
+        $('.add_agent').attr('disabled', true);
+    }
+
+    if ($name_group && $select_agent) {
+        $('.add_group').attr('disabled', false);
+    } else {
+        $('.add_group').attr('disabled', true);
+    }
+
+    if ($date && $groups && $type_concert && $conditions && $status) {
+        $('.add_concert').attr('disabled', false);
+    } else {
+        $('.add_concert').attr('disabled', true);
+    }
+}
 // function theRotator() {
 //     $('.section-events__fon-img').css({ opacity: 0.0 });
 //     $('.section-events__fon-img:first').addClass('show').css({ opacity: 1.0 });

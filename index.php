@@ -40,8 +40,15 @@
                 $name = $result['Группа'];
 
               }
-                echo "<div class=\"section-index__afisha flex\"><img class=\"section-index__afisha-img\" src=\"$dir$date.jpg\" alt=\"$name\"/></div>";
+
+              $src = "$dir/$date.jpg";
+              if (file_exists($src)) {
+                echo "<div class=\"section-index__afisha flex\"><img class=\"section-index__afisha-img\" src=\"$dir/$date.jpg\" alt=\"$name\"/></div>";
+              } else {
+                echo "<div class=\"section-index__afisha flex\"><img class=\"section-index__afisha-img\" src=\"$dir/орел.jpg\" alt=\"Rock-staR Орел\"/></div>";
+              }
             }?>
+
           </div>
         </div>
       </div>
