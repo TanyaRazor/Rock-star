@@ -448,7 +448,7 @@ body {
 
 .section-admin__container {
     width: 70%;
-    max-height: 2233px;
+    min-height: 2233px;
     background-color: antiquewhite;
     color: #333333;
 }
