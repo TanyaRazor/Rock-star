@@ -9,6 +9,16 @@
 <main id="index">
   <div class="section-index">
     <div class="container-fluid section-index__container">
+
+        <div id="myModal" class="modal_img">
+        <!-- The Close Button -->
+        <span class="close">&times;</span>
+        <!-- Modal Content (The Image) -->
+        <img class="modal-content_img" id="img01">
+        <!-- Modal Caption (Image Text) -->
+        <!-- <div id="caption"></div> -->
+        </div>
+
       <h2 class="header section-index__header">Главная</h2>
       <div class="section-index__content flex">
         <div class="section-index__one">
@@ -43,9 +53,9 @@
 
               $src = "$dir/$date.jpg";
               if (file_exists($src)) {
-                echo "<div class=\"section-index__afisha flex\"><img class=\"section-index__afisha-img\" src=\"$dir/$date.jpg\" alt=\"$name\"/></div>";
+                echo "<div class=\"section-index__afisha flex\"><img id=\"afisha\" class=\"section-index__afisha-img\" src=\"$dir/$date.jpg\" alt=\"$name\"/></div>";
               } else {
-                echo "<div class=\"section-index__afisha flex\"><img class=\"section-index__afisha-img\" src=\"$dir/орел.jpg\" alt=\"Rock-staR Орел\"/></div>";
+                echo "<div class=\"section-index__afisha flex\"><img id=\"afisha\" class=\"section-index__afisha-img\" src=\"$dir/орел.jpg\" alt=\"Rock-staR Орел\"/></div>";
               }
             }?>
 
@@ -54,6 +64,7 @@
       </div>
     </div>
   </div>
+
 </main>
 
 <?php include 'footer.html';?>

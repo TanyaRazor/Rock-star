@@ -28,6 +28,8 @@ if (! $_SESSION['admin']){
     <div class="section-admin">
     <div class="container-fluid section-admin__container">
 
+    </div>
+
     <a href="logout.php">Выйти</a>
       <?php include 'request.php';
 

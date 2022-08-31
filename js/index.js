@@ -14,6 +14,41 @@ $(function() {
     // });
     // $('select').select2();
 
+    $('.section-index__afisha-img').click(function() {
+        let src = $(this).attr('src');
+        $('.modal_img img').attr('src', src);
+        $('.modal_img').fadeIn();
+    });
+    $('.close').click(function() {
+        $('.modal_img').fadeOut();
+    });
+
+    $(document).click(function(e) {
+        if ($(e.target).is('.modal_img')) {
+            $('.modal_img').fadeOut();
+        }
+    });
+
+    // Get the modal
+    // var modal = $('#myModal');
+
+    // // Get the image and insert it inside the modal - use its "alt" text as a caption
+    // var img = document.getElementById('afisha');
+    // var modalImg = document.getElementById("img01");
+    // var captionText = document.getElementById("caption");
+    // img.onclick = function() {
+    //     modal.style.display = "block";
+    //     modalImg.src = this.src;
+    //     captionText.innerHTML = this.alt;
+    // }
+
+    // Get the <span> element that closes the modal
+    // var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks on <span> (x), close the modal
+    // span.onclick = function() {
+    //     modal.style.display = "none";
+    // }
 });
 
 function toggleButton() {
