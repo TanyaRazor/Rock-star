@@ -2,7 +2,7 @@
 header('Content-type: text/html; charset=utf-8');
 session_start();
 $TimeOutMinutes = 5; // This is your TimeOut period in minutes
-$LogOff_URL = "login.html"; // If timed out, it will be redirected to this page
+$LogOff_URL = "login.php"; // If timed out, it will be redirected to this page
 
 $TimeOutSeconds = $TimeOutMinutes * 60; // TimeOut in Seconds
 if (isset($_SESSION['SessionStartTime'])) {
