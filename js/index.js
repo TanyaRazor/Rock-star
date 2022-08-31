@@ -9,8 +9,10 @@ $(function() {
     $(window).on('resize', function() { $('.section-header__burger').hide(); });
 
     // theRotator();
-
-
+    // $('select').selectize({
+    //     sortField: 'text'
+    // });
+    // $('select').select2();
 
 });
 

@@ -1,3 +1,25 @@
+<?php
+header('Content-type: text/html; charset=utf-8');
+session_start();
+$TimeOutMinutes = 5; // This is your TimeOut period in minutes
+$LogOff_URL = "login.html"; // If timed out, it will be redirected to this page
+
+$TimeOutSeconds = $TimeOutMinutes * 60; // TimeOut in Seconds
+if (isset($_SESSION['SessionStartTime'])) {
+    $InActiveTime = time() - $_SESSION['SessionStartTime'];
+    if ($InActiveTime >= $TimeOutSeconds) {
+        session_destroy();
+        header("Location: $LogOff_URL");
+    }
+}
+$_SESSION['SessionStartTime'] = time();
+
+if (! $_SESSION['admin']){
+  header('Location: login.html');
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="ru">
   <?php include 'head.html';?>
@@ -6,8 +28,10 @@
     <div class="section-admin">
     <div class="container-fluid section-admin__container">
 
-
+    <a href="logout.php">Выйти</a>
       <?php include 'request.php';
+
+
 
     echo "<form action=\"request.php\" method=\"post\">
             <fieldset class=\"fieldset\">
@@ -15,6 +39,7 @@
               <input class=\"input\" type=\"text\" name=\"city\" id=\"input_city\" placeholder=\"Введите город...\" onchange=\"toggleButton()\">
               <select name=\"countries\" id=\"countries\" class=\"section-admin__select-country\" onchange=\"toggleButton()\">
               <option value=\"NULL\" selected disabled hidden>Страна</option>";
+              // <option value=\"NULL\" selected hidden>Страна</option>";
                 foreach ($country_array as $countries) {
                   foreach ($countries as $result_countries) {
                     $country = $result_countries['имя'];

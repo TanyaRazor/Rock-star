@@ -447,7 +447,7 @@ body {
 .section-admin {}
 
 .section-admin__container {
-    width: 70%;
+    width: 100%;
     min-height: 2233px;
     background-color: antiquewhite;
     color: #333333;
@@ -502,6 +502,23 @@ select {
 
 .input_edit {
     margin-bottom: 20px;
+}
+
+.section-login__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.form-control {
+    width: auto;
+    margin-bottom: 20px;
+}
+
+.fieldset-login {
+    width: fit-content;
+    /* margin: 0 auto; */
 }
 
 
