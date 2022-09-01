@@ -94,12 +94,10 @@ while ($rows = mysqli_fetch_assoc($sql9)) {
 if (isset($_GET['delete_id'])) {
   $sql = mysqli_query($con, "DELETE FROM `Концерты` WHERE `ID` = {$_GET['delete_id']}");
   if ($sql) {
-    echo "<p>Успешно.</p>";
     header("Refresh: 1;".$_SERVER["HTTP_REFERER"]);
     exit;
   } else {
-    echo '<p>Произошла ошибка: ' . mysqli_error($con) . '</p>';
-    header("Refresh: 10;".$_SERVER["HTTP_REFERER"]);
+    header("Refresh: 1;".$_SERVER["HTTP_REFERER"]);
     exit;
   }
 }
@@ -253,11 +251,9 @@ if (isset($_POST['edit_concert'])) {
 
 $sql = mysqli_query($con, "UPDATE `Концерты` SET `дата_время_начала`='$date', `группа`='$group_id', `тип_концерта`='$type_id', `условия`='$condition_id', `комментарий`='$comment_edit', `расходы`='$costs_edit', `статус_переговоров`='$status_id' WHERE `Концерты`.`id` = '$id'");
   if ($sql) {
-    echo "<p>Успешно.</p>";
     header("Refresh: 1;" ."/admin.php");
     exit;
   } else {
-    echo '<p>Произошла ошибка: ' . mysqli_error($con) . '</p>';
     header("Refresh: 1;" ."/admin.php");
     exit;
   }

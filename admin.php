@@ -15,11 +15,9 @@ if (isset($_SESSION['SessionStartTime'])) {
 $_SESSION['SessionStartTime'] = time();
 
 if (! $_SESSION['admin']){
-  header('Location: login.html');
+  header("Location: $LogOff_URL");
 }
 ?>
-
-
 <!DOCTYPE html>
 <html lang="ru">
   <?php include 'head.html';?>
@@ -27,8 +25,6 @@ if (! $_SESSION['admin']){
 
     <div class="section-admin">
     <div class="container-fluid section-admin__container">
-
-    </div>
 
     <a href="logout.php">Выйти</a>
       <?php include 'request.php';
@@ -243,5 +239,7 @@ if (! $_SESSION['admin']){
           </tbody>
         </table>
       </fieldset>
+      </div>
+    </div>
 </body>
 </html>

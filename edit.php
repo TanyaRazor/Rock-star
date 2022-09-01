@@ -1,17 +1,18 @@
-<!DOCTYPE html>
-<html lang="ru">
+<?php
 
-  <?php include 'head.html';?>
+include 'request.php';
+ echo "<!DOCTYPE html>
+<html lang=\"ru\">";
 
-</head>
+
+  include 'head.html';
+
+echo "</head>
 <body>
 
 <div>
-        <input class="inputStandard" type="button" onclick="history.back();" value="Назад"/>
-    </div>
-
-<?php include 'request.php';
-
+        <input class=\"inputStandard\" type=\"button\" onclick=\"history.back();\" value=\"Назад\"/>
+    </div>";
 $id = $_GET['edit_id'];
 
 // echo $id;
