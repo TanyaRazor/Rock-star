@@ -56,7 +56,6 @@ function toggleButton() {
     $select_country = $('#countries').val();
 
     $input_agent = $('#agent').val();
-    $input_phone = $('#phone').val();
     $select_city = $('#cities').val();
 
     $name_group = $('#group').val();
@@ -74,7 +73,7 @@ function toggleButton() {
         $('.add_city').attr('disabled', true);
     }
 
-    if ($input_agent && $input_phone && $select_city) {
+    if ($input_agent && $select_city) {
         $('.add_agent').attr('disabled', false);
     } else {
         $('.add_agent').attr('disabled', true);

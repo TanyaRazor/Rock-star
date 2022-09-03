@@ -94,10 +94,10 @@ while ($rows = mysqli_fetch_assoc($sql9)) {
 if (isset($_GET['delete_id'])) {
   $sql = mysqli_query($con, "DELETE FROM `Концерты` WHERE `ID` = {$_GET['delete_id']}");
   if ($sql) {
-    header("Refresh: 1;".$_SERVER["HTTP_REFERER"]);
+    header("Refresh: 1;" ."/admin.php");
     exit;
   } else {
-    header("Refresh: 1;".$_SERVER["HTTP_REFERER"]);
+    header("Refresh: 1;" ."/admin.php");
     exit;
   }
 }
@@ -118,11 +118,16 @@ if (isset($_POST['btn_city'])) {
 
     $city_add = mysqli_query($con, "INSERT INTO `Город` (`id`,`имя`, `id_страны`) VALUES (NULL,'$city_name', '$country_id')");
 
-    header("Refresh: 1;".$_SERVER["HTTP_REFERER"]);
-    exit;
+    if ($city_add) {
+      header("Refresh: 1;" ."/admin.php");
+      exit;
+    } else {
+      header("Refresh: 1;" ."/admin.php");
+      exit;
+    }
 }
 
-if (isset($_POST['btn_genres'])) {
+if (isset($_POST['btn_agents'])) {
   $agent_name = $con->real_escape_string($_POST['agent']);
   $phone = $con->real_escape_string($_POST['phone']);
   $city_name = $con->real_escape_string($_POST['cities']);
@@ -135,8 +140,13 @@ if (isset($_POST['btn_genres'])) {
 
   $agent_add = mysqli_query($con, "INSERT INTO `Представитель` (`id`,`имя`, `телефон`, `id_города`) VALUES (NULL, '$agent_name', '$phone' ,'$city_id')");
 
-  header("Refresh: 1;".$_SERVER["HTTP_REFERER"]);
+  if ($agent_add) {
+    header("Refresh: 1;" ."/admin.php");
     exit;
+  } else {
+    header("Refresh: 1;" ."/admin.php");
+    exit;
+  }
 }
 
 if (isset($_POST['btn_groups'])) {
@@ -163,8 +173,13 @@ if (isset($_POST['btn_groups'])) {
 
   $group_add = mysqli_query($con, "INSERT INTO `Группы` (`id`,`name`, `id_agent`,`id_жанра`) VALUES (NULL,'$group_name','$agent_id','$genre_id')");
 
-  header("Refresh: 1;".$_SERVER["HTTP_REFERER"]);
+  if ($group_add) {
+    header("Refresh: 1;" ."/admin.php");
     exit;
+  } else {
+    header("Refresh: 1;" ."/admin.php");
+    exit;
+  }
 }
 
 
@@ -208,8 +223,13 @@ if (isset($_POST['add_concert'])) {
 
   $concert_add =  mysqli_query($con, "INSERT INTO `Концерты` (`id`, `дата_время_начала`,`группа`, `тип_концерта`, `условия`,`комментарий`,`расходы`,`статус_переговоров`) VALUES (NULL, \"$date\", \"$group_id\", \"$type_id\", \"$condition_id\", \"$comment\", \"$costs\", \"$status_id\")");
 
-  header("Refresh: 1;".$_SERVER["HTTP_REFERER"]);
+  if ($concert_add) {
+    header("Refresh: 1;" ."/admin.php");
     exit;
+  } else {
+    header("Refresh: 1;" ."/admin.php");
+    exit;
+  }
 }
 
 

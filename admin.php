@@ -54,7 +54,7 @@ if (! $_SESSION['admin']){
             <fieldset class=\"fieldset\">
               <legend>Добавление представителя</legend>
               <input class=\"input\" type=\"text\" id=\"agent\" name=\"agent\" placeholder=\"Ф. И. О.\" onchange=\"toggleButton()\">
-              <input class=\"input\" type=\"tel\" name=\"phone\" id=\"phone\" placeholder=\"+71234567890\" onchange=\"toggleButton()\">
+              <input class=\"input\" type=\"tel\" name=\"phone\" id=\"phone\" placeholder=\"+71234567890\">
 
             <select name=\"cities\" id=\"cities\" class=\"section-admin__select-city\" onchange=\"toggleButton()\">
               <option value=\"NULL\" selected disabled hidden>Город</option>";
