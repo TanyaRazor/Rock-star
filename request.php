@@ -8,11 +8,11 @@
 
 $sql = mysqli_query($con, "SELECT date(`дата_время_начала`) as `Дата`,  `Группы`.`name` as `Группа` from `Группы`, `Концерты` WHERE `Концерты`.`группа`=`Группы`.`id` and date(`дата_время_начала`) >= CURRENT_DATE");
 
-$sql1 = mysqli_query($con, "SELECT * FROM `Город`");
+$sql1 = mysqli_query($con, "SELECT * FROM `Город` ORDER BY `имя`");
 
-$sql2 = mysqli_query($con, "SELECT * FROM `Страна`");
+$sql2 = mysqli_query($con, "SELECT * FROM `Страна` ORDER BY `имя`");
 
-$sql3 = mysqli_query($con,"SELECT * FROM `Группы`");
+$sql3 = mysqli_query($con,"SELECT * FROM `Группы` ORDER BY `name`");
 
 $sql4 = mysqli_query($con, "SELECT * FROM `Тип_концерта`");
 
@@ -118,7 +118,7 @@ if (isset($_POST['btn_city'])) {
 
     $city_add = mysqli_query($con, "INSERT INTO `Город` (`id`,`имя`, `id_страны`) VALUES (NULL,'$city_name', '$country_id')");
 
-    header("Location: ".$_SERVER['HTTP_REFERER']);
+    header("Refresh: 1;".$_SERVER["HTTP_REFERER"]);
     exit;
 }
 
@@ -135,8 +135,8 @@ if (isset($_POST['btn_genres'])) {
 
   $agent_add = mysqli_query($con, "INSERT INTO `Представитель` (`id`,`имя`, `телефон`, `id_города`) VALUES (NULL, '$agent_name', '$phone' ,'$city_id')");
 
-  header("Location: ".$_SERVER['HTTP_REFERER']);
-  exit;
+  header("Refresh: 1;".$_SERVER["HTTP_REFERER"]);
+    exit;
 }
 
 if (isset($_POST['btn_groups'])) {
@@ -163,8 +163,8 @@ if (isset($_POST['btn_groups'])) {
 
   $group_add = mysqli_query($con, "INSERT INTO `Группы` (`id`,`name`, `id_agent`,`id_жанра`) VALUES (NULL,'$group_name','$agent_id','$genre_id')");
 
-  header("Location: ".$_SERVER['HTTP_REFERER']);
-  exit;
+  header("Refresh: 1;".$_SERVER["HTTP_REFERER"]);
+    exit;
 }
 
 
@@ -208,8 +208,8 @@ if (isset($_POST['add_concert'])) {
 
   $concert_add =  mysqli_query($con, "INSERT INTO `Концерты` (`id`, `дата_время_начала`,`группа`, `тип_концерта`, `условия`,`комментарий`,`расходы`,`статус_переговоров`) VALUES (NULL, \"$date\", \"$group_id\", \"$type_id\", \"$condition_id\", \"$comment\", \"$costs\", \"$status_id\")");
 
-  header("Location: ".$_SERVER['HTTP_REFERER']);
-  exit;
+  header("Refresh: 1;".$_SERVER["HTTP_REFERER"]);
+    exit;
 }
 
 
