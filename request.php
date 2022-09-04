@@ -6,7 +6,7 @@
 
 // $sql_concerts = "SELECT `Концерты`.`дата_время_начала` as `Дата и время начала`, `Группы`.`name` as `Группа`, `Тип_концерта`.`имя` as `Тип`, `Условия_выступления`.`имя` as `Условия выступления`, `Концерты`.`комментарий` as `Условия`, `Концерты`.`расходы` as `Расходы`, `Статус_переговоров`.`имя`as `Статус переговоров`";
 
-$sql = mysqli_query($con, "SELECT date(`дата_время_начала`) as `Дата`,  `Группы`.`name` as `Группа` from `Группы`, `Концерты` WHERE `Концерты`.`группа`=`Группы`.`id` and date(`дата_время_начала`) >= CURRENT_DATE");
+$sql = mysqli_query($con, "SELECT date(`дата_время_начала`) as `Дата`, `Группы`.`name` as `Группа` from `Группы`, `Концерты` WHERE `Концерты`.`группы`=`Группы`.`id` and date(`дата_время_начала`) >= CURRENT_DATE");
 
 $sql1 = mysqli_query($con, "SELECT * FROM `Город` ORDER BY `имя`");
 
@@ -18,9 +18,9 @@ $sql4 = mysqli_query($con, "SELECT * FROM `Тип_концерта`");
 
 $sql5 = mysqli_query($con, "SELECT * FROM `Условия_выступления`");
 
-$sql6 = mysqli_query($con, "SELECT * FROM `Статус_переговоров`");
+$sql6 = mysqli_query($con, "SELECT * FROM `Статус_переговоров` ORDER BY `id`");
 
-$sql7 = mysqli_query($con, "SELECT `Концерты`.`id` as `id`, `Концерты`.`дата_время_начала` as `Дата`, `Группы`.`name` as `Группа`, `Тип_концерта`.`имя` as `Тип`, `Условия_выступления`.`имя` as `Условия выступления`, `Концерты`.`комментарий` as `Комментарий`, `Концерты`.`расходы` as `Расходы`, `Статус_переговоров`.`имя`as `Статус переговоров` FROM `Концерты`, `Тип_концерта`,`Условия_выступления`,`Группы`, `Статус_переговоров` WHERE `Концерты`.`группа`=`Группы`.`id` AND `Концерты`.`тип_концерта`=`Тип_концерта`.`id` AND `Концерты`.`условия`=`Условия_выступления`.`id` AND `Концерты`.`статус_переговоров`=`Статус_переговоров`.`id` ORDER BY `Дата` ASC");
+$sql7 = mysqli_query($con, "SELECT `Концерты`.`id` as `id`, `Концерты`.`дата_время_начала` as `Дата`,  `название` as `Название`, `группы` as `Группы`, `Тип_концерта`.`имя` as `Тип`, `Условия_выступления`.`имя` as `Условия выступления`, `Концерты`.`комментарий` as `Комментарий`, `Концерты`.`расходы` as `Расходы`, `Статус_переговоров`.`имя`as `Статус переговоров` FROM `Концерты`, `Тип_концерта`,`Условия_выступления`, `Статус_переговоров` WHERE `Концерты`.`тип_концерта`=`Тип_концерта`.`id` AND `Концерты`.`условия`=`Условия_выступления`.`id` AND `Концерты`.`статус_переговоров`=`Статус_переговоров`.`id` ORDER BY `Дата` ASC");
 
 $sql8 = mysqli_query($con, "SELECT `Представитель`.`имя` as `Имя`, `Представитель`.`телефон` as `Телефон`, `Город`.`имя` AS `Город` FROM `Представитель`, `Город` WHERE `Город`.`id` = `Представитель`.`id_города` ORDER BY `Представитель`.`имя` ASC");
 
@@ -158,17 +158,16 @@ if (isset($_POST['btn_groups'])) {
     $agent_id = $a_id['id'];
   }
 
-  $genre_name = $con->real_escape_string($_POST['genre']);
-
-  if ($genre_name == NULL){
+  if ($_POST['genres'] == "noname"){
     $genre_id = '0';
   }else{
+    $genre_name = $con->real_escape_string($_POST['genres']);
     $genre_id = mysqli_query($con, "SELECT `id` FROM `Жанр_группы` WHERE `имя`=\"$genre_name\"");
   }
 
-  foreach ($genre_id as $g_id){
-    $genre_id = $g_id['id'];
-  }
+  // foreach ($genre_id as $g_id){
+  //   $genre_id = $g_id['id'];
+  // }
 
 
   $group_add = mysqli_query($con, "INSERT INTO `Группы` (`id`,`name`, `id_agent`,`id_жанра`) VALUES (NULL,'$group_name','$agent_id','$genre_id')");
@@ -189,20 +188,31 @@ if (isset($_POST['btn_groups'])) {
 if (isset($_POST['add_concert'])) {
 
   $date = $con->real_escape_string($_POST['date']);
-  $group_name = $con->real_escape_string($_POST['groups']);
+  $name = $con->real_escape_string($_POST['name_activity']);
+  $group_name_array = array();
+  $group_name = $_POST['groups'];
+
+  if ($group_name){
+    foreach ($group_name as $group){
+      array_push($group_name_array, $group);
+    }
+  }
+
+  $groups_name = $con->real_escape_string(implode(",", $group_name_array));
+
   $type_name = $con->real_escape_string($_POST['type_concert']);
   $condition_name = $con->real_escape_string($_POST['conditions']);
   $status_name = $con->real_escape_string($_POST['status']);
 
 
-  $group_id = mysqli_query($con, "SELECT * FROM `Группы` WHERE `name` = \"$group_name\"");
+  // $group_id = mysqli_query($con, "SELECT * FROM `Группы` WHERE `name` = \"$group_name\"");
   $type_id = mysqli_query($con, "SELECT * FROM `Тип_концерта` WHERE `имя` = \"$type_name\"");
   $condition_id = mysqli_query($con, "SELECT * FROM `Условия_выступления` WHERE `имя` = \"$condition_name\"");
   $status_id = mysqli_query($con, "SELECT * FROM `Статус_переговоров` WHERE `имя` = \"$status_name\"");
 
-  foreach ($group_id as $g){
-    $group_id = $g['id'];
-  }
+  // foreach ($group_id as $g){
+  //   $group_id = $g['id'];
+  // }
   foreach ($type_id as $t){
     $type_id = $t['id'];
   }
@@ -221,7 +231,7 @@ if (isset($_POST['add_concert'])) {
     $costs = 0;
   }
 
-  $concert_add =  mysqli_query($con, "INSERT INTO `Концерты` (`id`, `дата_время_начала`,`группа`, `тип_концерта`, `условия`,`комментарий`,`расходы`,`статус_переговоров`) VALUES (NULL, \"$date\", \"$group_id\", \"$type_id\", \"$condition_id\", \"$comment\", \"$costs\", \"$status_id\")");
+  $concert_add =  mysqli_query($con, "INSERT INTO `Концерты` (`id`, `дата_время_начала`,`название`,`группы`, `тип_концерта`, `условия`,`комментарий`,`расходы`,`статус_переговоров`) VALUES (NULL, \"$date\", \"$name\",\"$groups_name\", \"$type_id\", \"$condition_id\", \"$comment\", \"$costs\", \"$status_id\")");
 
   if ($concert_add) {
     header("Refresh: 1;" ."/admin.php");
@@ -237,7 +247,17 @@ if (isset($_POST['edit_concert'])) {
 
   $id = ($_POST['id_edit']);
   $date = $con->real_escape_string($_POST['date_edit']);
-  $group_name = $con->real_escape_string($_POST['group_edit']);
+  $name = $con->real_escape_string($_POST['name_edit']);
+  $group_name_array = array();
+  $group_name = $_POST['group_edit'];
+
+  if ($group_name){
+    foreach ($group_name as $group){
+      array_push($group_name_array, $group);
+    }
+  }
+
+  $groups_name = $con->real_escape_string(implode(",", $group_name_array));
   $type_name = $con->real_escape_string($_POST['type_concert_edit']);
   $condition_name = $con->real_escape_string($_POST['condition_edit']);
   $comment_edit = $con->real_escape_string($_POST['comments_edit']);
@@ -245,14 +265,14 @@ if (isset($_POST['edit_concert'])) {
   $status_name = $con->real_escape_string($_POST['status_edit']);
 
 
-  $group_id = mysqli_query($con, "SELECT * FROM `Группы` WHERE `name` = \"$group_name\"");
+  // $group_id = mysqli_query($con, "SELECT * FROM `Группы` WHERE `name` = \"$group_name\"");
   $type_id = mysqli_query($con, "SELECT * FROM `Тип_концерта` WHERE `имя` = \"$type_name\"");
   $condition_id = mysqli_query($con, "SELECT * FROM `Условия_выступления` WHERE `имя` = \"$condition_name\"");
   $status_id = mysqli_query($con, "SELECT * FROM `Статус_переговоров` WHERE `имя` = \"$status_name\"");
 
-  foreach ($group_id as $g){
-    $group_id = $g['id'];
-  }
+  // foreach ($group_id as $g){
+  //   $group_id = $g['id'];
+  // }
   foreach ($type_id as $t){
     $type_id = $t['id'];
   }
@@ -269,7 +289,7 @@ if (isset($_POST['edit_concert'])) {
     $costs_edit = 0;
   }
 
-$sql = mysqli_query($con, "UPDATE `Концерты` SET `дата_время_начала`='$date', `группа`='$group_id', `тип_концерта`='$type_id', `условия`='$condition_id', `комментарий`='$comment_edit', `расходы`='$costs_edit', `статус_переговоров`='$status_id' WHERE `Концерты`.`id` = '$id'");
+$sql = mysqli_query($con, "UPDATE `Концерты` SET `дата_время_начала`='$date', `Название` = '$name', `группы`='$groups_name', `тип_концерта`='$type_id', `условия`='$condition_id', `комментарий`='$comment_edit', `расходы`='$costs_edit', `статус_переговоров`='$status_id' WHERE `Концерты`.`id` = '$id'");
   if ($sql) {
     header("Refresh: 1;" ."/admin.php");
     exit;

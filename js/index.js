@@ -19,9 +19,9 @@ $(function() {
         $('.modal_img img').attr('src', src);
         $('.modal_img').fadeIn();
     });
-    $('.close').click(function() {
-        $('.modal_img').fadeOut();
-    });
+    // $('.close').click(function() {
+    //     $('.modal_img').fadeOut();
+    // });
 
     $(document).click(function(e) {
         if ($(e.target).is('.modal_img')) {
@@ -62,6 +62,7 @@ function toggleButton() {
     $select_agent = $('#agents').val();
 
     $date = $('#date').val();
+    $name_activity = $('#name_activity').val();
     $groups = $('#groups_select').val();
     $type_concert = $('#type_concert').val();
     $conditions = $('#conditions').val();
@@ -85,7 +86,7 @@ function toggleButton() {
         $('.add_group').attr('disabled', true);
     }
 
-    if ($date && $groups && $type_concert && $conditions && $status) {
+    if ($date && $name_activity && $groups && $type_concert && $conditions && $status) {
         $('.add_concert').attr('disabled', false);
     } else {
         $('.add_concert').attr('disabled', true);

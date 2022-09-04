@@ -84,14 +84,13 @@ if (! $_SESSION['admin']){
               echo "<option value=\"$agent\" class=\"section-admin__select-option\">$agent</option>";
             }
             echo"</select>
-            <select name=\"genre\" id=\"genre\" class=\"section-admin__genre_name\" onchange=\"toggleButton()\">
-              <option value=\"NULL\" selected disabled hidden>Жанр</option>";
-
+            <select name=\"genres\" id=\"genres\" class=\"section-admin__genre_name\">
+              <option value=\"noname\" selected>Не выбрано</option>";
             foreach ($genre_array as $gen) {
               foreach ($gen as $genres) {
-                $genre = $genres['имя'];
+                $genres = $genres['имя'];
               }
-              echo "<option value=\"$genre\" class=\"section-admin__select-option\">$genre</option>";
+              echo "<option value=\"$genres\" class=\"section-admin__select-option\">$genres</option>";
             }
             echo"</select>
             <input class=\"btn_concert add_group\" type=\"submit\" name=\"btn_groups\" value=\"Добавить\" disabled>
@@ -107,10 +106,15 @@ if (! $_SESSION['admin']){
                 <input class=\"input\" type=\"datetime-local\" name=\"date\" id=\"date\" onchange=\"toggleButton()\">
               </label>
             </div>
+            <div class=\"input\">
+              <label class=\"input__label flex\" for=\"#name_activity\">Название
+                <input class=\"input\" type=\"name_activity\" name=\"name_activity\" id=\"name_activity\" onchange=\"toggleButton()\">
+              </label>
+            </div>
 
             <div class=\"input\">
               <label class=\"input__label flex\" for=\"#groups\">Группа
-                <select name=\"groups\" id=\"groups_select\" onchange=\"toggleButton()\">
+                <select name=\"groups[]\" id=\"groups_select\" multiple onchange=\"toggleButton()\">
                 <option value=\"NULL\" selected disabled hidden>Группа</option>";
 
                 foreach ($group_array as $gr) {
@@ -191,6 +195,7 @@ if (! $_SESSION['admin']){
                 <table class=\"table\">
                 <tr>
                   <th>Дата</th>
+                  <th>Название</th>
                   <th>Группа</th>
                   <th>Тип концерта</th>
                   <th>Условия</th>
@@ -203,7 +208,8 @@ if (! $_SESSION['admin']){
                   foreach ($c as $concert) {
                       $id = $concert['id'];
                       $data = $concert['Дата'];
-                      $groups = $concert['Группа'];
+                      $name = $concert['Название'];
+                      $groups = $concert['Группы'];
                       $type_concert = $concert['Тип'];
                       $conditions = $concert['Условия выступления'];
                       $comments = $concert['Комментарий'];
@@ -212,6 +218,7 @@ if (! $_SESSION['admin']){
                   }
                   echo "<tr>
                           <td>$data</td>
+                          <td>$name</td>
                           <td>$groups</td>
                           <td>$type_concert</td>
                           <td>$conditions</td>

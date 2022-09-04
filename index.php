@@ -12,7 +12,7 @@
 
         <div id="myModal" class="modal_img">
         <!-- The Close Button -->
-        <span class="close">&times;</span>
+        <!-- <span class="close">&times;</span> -->
         <!-- Modal Content (The Image) -->
         <img class="modal-content_img" id="img01">
         <!-- Modal Caption (Image Text) -->
