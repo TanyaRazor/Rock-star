@@ -24,7 +24,7 @@ $(function() {
     // });
 
     $(document).click(function(e) {
-        if ($(e.target).is('.modal_img')) {
+        if ($(e.target).is('.modal_img img')) {
             $('.modal_img').fadeOut();
         }
     });
