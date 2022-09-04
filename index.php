@@ -47,7 +47,7 @@
             foreach ($res_array as $res) {
               foreach ($res as $result) {
                 $date = $result['Дата'];
-                $name = $result['Группа'];
+                $name = $result['Название'];
 
               }
 
