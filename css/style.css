@@ -543,7 +543,10 @@ select {
     margin: auto;
     display: block;
     height: 100%;
+    width: 100vw;
     object-fit: contain;
+    padding-left: 10%;
+    padding-right: 10%;
 }
 
 
