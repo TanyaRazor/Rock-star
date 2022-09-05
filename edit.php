@@ -54,7 +54,7 @@ $sql_edit = mysqli_query($con, "SELECT `Концерты`.`id` as `id`, `Кон�
 
         <div class=\"input_edit\">
           <label class=\"input__label flex\" for=\"#group_edit\">Группы
-            <select name=\"group_edit[]\" id=\"group_edit\" multiple>";
+            <select class=\"chosen-select\" data-placeholder=\"Выберите группы...\" name=\"group_edit[]\" id=\"group_edit\" multiple>";
             foreach($sql_edit as $ed){
               $group_edit = $ed['Группы'];
             }

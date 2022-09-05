@@ -1,4 +1,8 @@
 $(function() {
+
+
+    $(".chosen-select").chosen();
+
     $('.section-header__burger-menu-icon').click(function() {
         $('.section-header__burger').css('display', 'flex');
     });

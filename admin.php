@@ -114,8 +114,8 @@ if (! $_SESSION['admin']){
 
             <div class=\"input\">
               <label class=\"input__label flex\" for=\"#groups\">Группа
-                <select  name=\"groups[]\" id=\"groups_select\" multiple onchange=\"toggleButton()\">
-                <option value=\"NULL\" selected disabled hidden>Группа</option>";
+                <select class=\"chosen-select\" data-placeholder=\"Выберите группы...\" name=\"groups[]\" id=\"groups_select\" multiple onchange=\"toggleButton()\">";
+                // <option value=\"NULL\" selected disabled hidden>Группа</option>";
 
                 foreach ($group_array as $gr) {
                   foreach ($gr as $group) {
