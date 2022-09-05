@@ -170,7 +170,7 @@ $sql_edit = mysqli_query($con, "SELECT `Концерты`.`id` as `id`, `Кон�
             echo "</select>
           </label>
         </div>
-        <div class=\"input_edit\">
+        <div class=\"input_edit_img\">
           <label for=\"#load_image_edit\" class=\"input__label flex\">Афиша
             <input type=\"file\" name=\"load_image_edit\" id=\"load_image_edit\" >
           </label>";

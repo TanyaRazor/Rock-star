@@ -244,6 +244,15 @@
     .admin_poster {
         display: table-cell;
     }
+    .section-edit__afisha {
+        height: 20vh;
+    }
+    .fieldset-edit {
+        width: inherit;
+    }
+    .input_edit_img {
+        width: 80vw;
+    }
 }
 
 @media screen and (min-width: 500px) and (max-width: 700px) {
@@ -464,6 +473,9 @@
     .admin_poster {
         display: table-cell;
     }
+    .section-edit__afisha {
+        height: 20vh;
+    }
 }
 
 @media screen and (min-width: 700px) and (max-width: 990px) {
@@ -681,6 +693,9 @@
     /* admin */
     .admin_poster {
         display: table-cell;
+    }
+    .section-edit__afisha {
+        height: 20vh;
     }
 }
 

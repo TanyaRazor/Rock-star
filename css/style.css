@@ -569,6 +569,10 @@ select {
     height: fit-content;
 }
 
+.input_edit_img {
+    margin-bottom: 20px;
+}
+
 
 /* modal */
 
