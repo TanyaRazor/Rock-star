@@ -29,6 +29,26 @@ $(function() {
         }
     });
 
+    // if ($('#load_image_edit').val()) {
+    // var name_poster = $('#load_image_edit').val();
+    // $('#poster_img_edit').attr("value", "123");
+    // var name_poster = $('#load_image_edit').val();
+    // $('#poster_img_edit').attr("value", name_poster);
+    // }
+
+    $("#load_image_edit").on("change", function() {
+        // if ($('#load_image_edit').val()) {
+
+        // }
+
+        // Обрабатываем объект добавленного изображения
+        var $input = $(this),
+            reader = new FileReader();
+        reader.onload = function() {
+            $("#poster_edit").attr("src", reader.result);
+        };
+        reader.readAsDataURL($input[0].files[0]);
+    });
     // Get the modal
     // var modal = $('#myModal');
 

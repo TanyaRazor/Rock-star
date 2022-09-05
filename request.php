@@ -1,4 +1,6 @@
-<?php include 'config.php';
+<?php
+
+include_once 'config.php';
 
 // $sql = "SELECT `Концерты`.`дата_время_начала` as `Дата и время начала`, `Группы`.`name` as `Группа`, `Тип_концерта`.`имя` as `Тип`, `Условия_выступления`.`имя` as `Условия выступления`, `Концерты`.`комментарий` as `Условия`, `Концерты`.`расходы` as `Расходы`, `Статус_переговоров`.`имя`as `Статус переговоров`
 //   . "FROM `Концерты`, `Тип_концерта`,`Условия_выступления`,`Группы`, `Статус_переговоров`
@@ -6,7 +8,7 @@
 
 // $sql_concerts = "SELECT `Концерты`.`дата_время_начала` as `Дата и время начала`, `Группы`.`name` as `Группа`, `Тип_концерта`.`имя` as `Тип`, `Условия_выступления`.`имя` as `Условия выступления`, `Концерты`.`комментарий` as `Условия`, `Концерты`.`расходы` as `Расходы`, `Статус_переговоров`.`имя`as `Статус переговоров`";
 
-$sql = mysqli_query($con, "SELECT date(`дата_время_начала`) as `Дата`, `название` as `Название` from `Концерты` WHERE date(`дата_время_начала`) >= CURRENT_DATE");
+$sql = mysqli_query($con, "SELECT date(`дата_время_начала`) as `Дата`, `название` as `Название`, `группы` as `Группы`, `афиша` as `Афиша` from `Концерты` WHERE date(`дата_время_начала`) >= CURRENT_DATE");
 
 $sql1 = mysqli_query($con, "SELECT * FROM `Город` ORDER BY `имя`");
 
@@ -20,7 +22,7 @@ $sql5 = mysqli_query($con, "SELECT * FROM `Условия_выступления
 
 $sql6 = mysqli_query($con, "SELECT * FROM `Статус_переговоров` ORDER BY `id`");
 
-$sql7 = mysqli_query($con, "SELECT `Концерты`.`id` as `id`, `Концерты`.`дата_время_начала` as `Дата`,  `название` as `Название`, `группы` as `Группы`, `Тип_концерта`.`имя` as `Тип`, `Условия_выступления`.`имя` as `Условия выступления`, `Концерты`.`комментарий` as `Комментарий`, `Концерты`.`расходы` as `Расходы`, `Статус_переговоров`.`имя`as `Статус переговоров` FROM `Концерты`, `Тип_концерта`,`Условия_выступления`, `Статус_переговоров` WHERE `Концерты`.`тип_концерта`=`Тип_концерта`.`id` AND `Концерты`.`условия`=`Условия_выступления`.`id` AND `Концерты`.`статус_переговоров`=`Статус_переговоров`.`id` ORDER BY `Дата` ASC");
+$sql7 = mysqli_query($con, "SELECT `Концерты`.`id` as `id`, `Концерты`.`дата_время_начала` as `Дата`,  `название` as `Название`, `группы` as `Группы`, `Тип_концерта`.`имя` as `Тип`, `Условия_выступления`.`имя` as `Условия выступления`, `Концерты`.`комментарий` as `Комментарий`, `Концерты`.`расходы` as `Расходы`, `Статус_переговоров`.`имя`as `Статус переговоров`, `Концерты`.`афиша` as `Афиша` FROM `Концерты`, `Тип_концерта`,`Условия_выступления`, `Статус_переговоров` WHERE `Концерты`.`тип_концерта`=`Тип_концерта`.`id` AND `Концерты`.`условия`=`Условия_выступления`.`id` AND `Концерты`.`статус_переговоров`=`Статус_переговоров`.`id` ORDER BY `Дата` ASC");
 
 $sql8 = mysqli_query($con, "SELECT `Представитель`.`имя` as `Имя`, `Представитель`.`телефон` as `Телефон`, `Город`.`имя` AS `Город` FROM `Представитель`, `Город` WHERE `Город`.`id` = `Представитель`.`id_города` ORDER BY `Представитель`.`имя` ASC");
 
@@ -231,7 +233,61 @@ if (isset($_POST['add_concert'])) {
     $costs = 0;
   }
 
-  $concert_add =  mysqli_query($con, "INSERT INTO `Концерты` (`id`, `дата_время_начала`,`название`,`группы`, `тип_концерта`, `условия`,`комментарий`,`расходы`,`статус_переговоров`) VALUES (NULL, \"$date\", \"$name\",\"$groups_name\", \"$type_id\", \"$condition_id\", \"$comment\", \"$costs\", \"$status_id\")");
+  // if (isset($_FILES['image'])) {
+  $fileTmpName = $_FILES['image']['tmp_name'];
+  $errorCode = $_FILES['image']['error'];
+  // Проверим на ошибки
+  if ($errorCode !== UPLOAD_ERR_OK || !is_uploaded_file($fileTmpName)) {
+      // Массив с названиями ошибок
+      $errorMessages = [
+        UPLOAD_ERR_INI_SIZE   => 'Размер файла превысил значение upload_max_filesize в конфигурации PHP.',
+        UPLOAD_ERR_FORM_SIZE  => 'Размер загружаемого файла превысил значение MAX_FILE_SIZE в HTML-форме.',
+        UPLOAD_ERR_PARTIAL    => 'Загружаемый файл был получен только частично.',
+        UPLOAD_ERR_NO_FILE    => 'Файл не был загружен.',
+        UPLOAD_ERR_NO_TMP_DIR => 'Отсутствует временная папка.',
+        UPLOAD_ERR_CANT_WRITE => 'Не удалось записать файл на диск.',
+        UPLOAD_ERR_EXTENSION  => 'PHP-расширение остановило загрузку файла.',
+      ];
+      // Зададим неизвестную ошибку
+      $unknownMessage = 'При загрузке файла произошла неизвестная ошибка.';
+      // Если в массиве нет кода ошибки, скажем, что ошибка неизвестна
+      $outputMessage = isset($errorMessages[$errorCode]) ? $errorMessages[$errorCode] : $unknownMessage;
+      // Выведем название ошибки
+      die($outputMessage);
+  } else {
+      // Создадим ресурс FileInfo
+      $fi = finfo_open(FILEINFO_MIME_TYPE);
+      // Получим MIME-тип
+      $mime = (string) finfo_file($fi, $fileTmpName);
+      // Проверим ключевое слово image (image/jpeg, image/png и т. д.)
+      if (strpos($mime, 'image') === false) die('Можно загружать только изображения.');
+
+      // Результат функции запишем в переменную
+      $image = getimagesize($fileTmpName);
+
+      // Зададим ограничения для картинок
+      $limitBytes  = 1024 * 1024 * 5;
+
+      // Проверим нужные параметры
+      if (filesize($fileTmpName) > $limitBytes) die('Размер изображения не должен превышать 5 Мбайт.');
+
+          // Сгенерируем расширение файла на основе типа картинки
+        $extension = image_type_to_extension($image[2]);
+
+        // Сократим .jpeg до .jpg
+        $format = str_replace('jpeg', 'jpg', $extension);
+
+        $date_poster = date('Y-m-d',strtotime($date));
+        $name_poster = $date_poster . "_" . $name . $format;
+
+      // Переместим картинку с новым именем и расширением в папку /upload
+      if (!move_uploaded_file($fileTmpName, __DIR__ . "/img/афиши/" . $name_poster)) {
+          die('При записи изображения на диск произошла ошибка.');
+      }
+    }
+  // }
+
+    $concert_add =  mysqli_query($con, "INSERT INTO `Концерты` (`id`, `дата_время_начала`,`название`,`группы`, `тип_концерта`, `условия`,`комментарий`,`расходы`,`статус_переговоров`, `афиша`) VALUES (NULL, \"$date\", \"$name\",\"$groups_name\", \"$type_id\", \"$condition_id\", \"$comment\", \"$costs\", \"$status_id\", \"$name_poster\")");
 
   if ($concert_add) {
     header("Refresh: 1;" ."/admin.php");
@@ -241,7 +297,6 @@ if (isset($_POST['add_concert'])) {
     exit;
   }
 }
-
 
 if (isset($_POST['edit_concert'])) {
 
@@ -261,9 +316,7 @@ if (isset($_POST['edit_concert'])) {
   $type_name = $con->real_escape_string($_POST['type_concert_edit']);
   $condition_name = $con->real_escape_string($_POST['condition_edit']);
   $comment_edit = $con->real_escape_string($_POST['comments_edit']);
-
   $status_name = $con->real_escape_string($_POST['status_edit']);
-
 
   // $group_id = mysqli_query($con, "SELECT * FROM `Группы` WHERE `name` = \"$group_name\"");
   $type_id = mysqli_query($con, "SELECT * FROM `Тип_концерта` WHERE `имя` = \"$type_name\"");
@@ -289,7 +342,65 @@ if (isset($_POST['edit_concert'])) {
     $costs_edit = 0;
   }
 
-$sql = mysqli_query($con, "UPDATE `Концерты` SET `дата_время_начала`='$date', `Название` = '$name', `группы`='$groups_name', `тип_концерта`='$type_id', `условия`='$condition_id', `комментарий`='$comment_edit', `расходы`='$costs_edit', `статус_переговоров`='$status_id' WHERE `Концерты`.`id` = '$id'");
+$src_poster = $_FILES['load_image_edit']['tmp_name'];
+
+if ($src_poster){
+  $fileTmpNameEdit = $_FILES['load_image_edit']['tmp_name'];
+  $errorCode = $_FILES['load_image_edit']['error'];
+
+  if ($errorCode !== UPLOAD_ERR_OK || !is_uploaded_file($fileTmpNameEdit)) {
+
+      $errorMessages = [
+        UPLOAD_ERR_INI_SIZE   => 'Размер файла превысил значение upload_max_filesize в конфигурации PHP.',
+        UPLOAD_ERR_FORM_SIZE  => 'Размер загружаемого файла превысил значение MAX_FILE_SIZE в HTML-форме.',
+        UPLOAD_ERR_PARTIAL    => 'Загружаемый файл был получен только частично.',
+        UPLOAD_ERR_NO_FILE    => 'Файл не был загружен.',
+        UPLOAD_ERR_NO_TMP_DIR => 'Отсутствует временная папка.',
+        UPLOAD_ERR_CANT_WRITE => 'Не удалось записать файл на диск.',
+        UPLOAD_ERR_EXTENSION  => 'PHP-расширение остановило загрузку файла.',
+      ];
+
+      $unknownMessage = 'При загрузке файла произошла неизвестная ошибка.';
+
+      $outputMessage = isset($errorMessages[$errorCode]) ? $errorMessages[$errorCode] : $unknownMessage;
+
+      die($outputMessage);
+  } else {
+
+      $fi = finfo_open(FILEINFO_MIME_TYPE);
+
+      $mime = (string) finfo_file($fi, $fileTmpNameEdit);
+      if (strpos($mime, 'image') === false) die('Можно загружать только изображения.');
+
+      $image = getimagesize($fileTmpNameEdit);
+
+      $limitBytes  = 1024 * 1024 * 5;
+
+      if (filesize($fileTmpNameEdit) > $limitBytes) die('Размер изображения не должен превышать 5 Мбайт.');
+
+        $extension = image_type_to_extension($image[2]);
+
+        $format = str_replace('jpeg', 'jpg', $extension);
+
+        $date_poster = date('Y-m-d',strtotime($date));
+
+
+        $poster_edit = $date_poster . "_" . $name . $format;
+
+        // echo "$poster_edit";
+
+      if (!move_uploaded_file($fileTmpNameEdit, __DIR__ . "/img/афиши/" . $poster_edit)) {
+          die('При записи изображения на диск произошла ошибка.');
+      }
+    }
+  }else{
+    $poster_edit = $con->real_escape_string($_POST['poster_img_edit']);
+  }
+
+
+
+
+$sql = mysqli_query($con, "UPDATE `Концерты` SET `дата_время_начала`='$date', `Название` = '$name', `группы`='$groups_name', `тип_концерта`='$type_id', `условия`='$condition_id', `комментарий`='$comment_edit', `расходы`='$costs_edit', `статус_переговоров`='$status_id', `афиша`='$poster_edit' WHERE `Концерты`.`id` = '$id'");
   if ($sql) {
     header("Refresh: 1;" ."/admin.php");
     exit;
@@ -298,6 +409,9 @@ $sql = mysqli_query($con, "UPDATE `Концерты` SET `дата_время_н
     exit;
   }
 }
+
+
+
 
 // $res_sql_concerts = mysqli_query($con, $sql_concerts);
 

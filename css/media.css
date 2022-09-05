@@ -241,6 +241,9 @@
     .btn_concert {
         align-self: auto;
     }
+    .admin_poster {
+        display: table-cell;
+    }
 }
 
 @media screen and (min-width: 500px) and (max-width: 700px) {
@@ -457,6 +460,10 @@
         text-indent: 25px;
         margin-bottom: 10px;
     }
+    /* admin */
+    .admin_poster {
+        display: table-cell;
+    }
 }
 
 @media screen and (min-width: 700px) and (max-width: 990px) {
@@ -670,6 +677,10 @@
         margin: 0 44px;
         text-indent: 45px;
         margin-bottom: 15px;
+    }
+    /* admin */
+    .admin_poster {
+        display: table-cell;
     }
 }
 

@@ -444,6 +444,9 @@ body {
     margin-bottom: 70px;
 }
 
+
+/* section-admin */
+
 .section-admin {}
 
 .section-admin__container {
@@ -488,7 +491,7 @@ select {
     height: fit-content;
 }
 
-.fielset-edit {
+.fieldset-edit {
     margin: 0 auto;
     width: fit-content;
     border: 1px solid #333333;
@@ -506,6 +509,7 @@ select {
 
 .section-login__container {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100vh;
@@ -520,6 +524,53 @@ select {
     width: fit-content;
     /* margin: 0 auto; */
 }
+
+.error_login {
+    display: none;
+    color: red;
+}
+
+#poster_img_edit {
+    display: none;
+}
+
+.section-admin__afisha {
+    display: flex;
+    height: 50px;
+    align-items: center;
+    justify-content: center;
+}
+
+.section-admin__afisha-img {
+    height: inherit;
+    object-fit: contain;
+}
+
+.admin_poster {
+    display: none;
+}
+
+.section-edit__afisha {
+    display: flex;
+    height: 50vh;
+    margin-top: 5%;
+    align-items: center;
+    justify-content: center;
+}
+
+.section-edit__afisha-img {
+    height: inherit;
+    object-fit: contain;
+}
+
+.btn_edit {
+    /* align-self: end; */
+    width: fit-content;
+    height: fit-content;
+}
+
+
+/* modal */
 
 .modal_img {
     display: none;

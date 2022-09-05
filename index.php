@@ -46,14 +46,13 @@
 
             foreach ($res_array as $res) {
               foreach ($res as $result) {
-                $date = $result['Дата'];
                 $name = $result['Название'];
-
+                $poster = $result['Афиша'];
               }
 
-              $src = "$dir/$date.jpg";
-              if (file_exists($src)) {
-                echo "<div class=\"section-index__afisha flex\"><img id=\"afisha\" class=\"section-index__afisha-img\" src=\"$dir/$date.jpg\" alt=\"$name\"/></div>";
+              $src = "$dir/$poster";
+              if ($poster && file_exists($src)) {
+                echo "<div class=\"section-index__afisha flex\"><img id=\"afisha\" class=\"section-index__afisha-img\" src=\"$src\" alt=\"$name\"/></div>";
               } else {
                 echo "<div class=\"section-index__afisha flex\"><img id=\"afisha\" class=\"section-index__afisha-img\" src=\"$dir/орел.jpg\" alt=\"Rock-staR Орел\"/></div>";
               }

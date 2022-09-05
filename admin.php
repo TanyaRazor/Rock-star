@@ -4,14 +4,14 @@ session_start();
 $TimeOutMinutes = 5; // This is your TimeOut period in minutes
 $LogOff_URL = "login.php"; // If timed out, it will be redirected to this page
 
-$TimeOutSeconds = $TimeOutMinutes * 60; // TimeOut in Seconds
-if (isset($_SESSION['SessionStartTime'])) {
-    $InActiveTime = time() - $_SESSION['SessionStartTime'];
-    if ($InActiveTime >= $TimeOutSeconds) {
-        session_destroy();
-        header("Location: $LogOff_URL");
-    }
-}
+// $TimeOutSeconds = $TimeOutMinutes * 60; // TimeOut in Seconds
+// if (isset($_SESSION['SessionStartTime'])) {
+//     $InActiveTime = time() - $_SESSION['SessionStartTime'];
+//     if ($InActiveTime >= $TimeOutSeconds) {
+//         session_destroy();
+//         header("Location: $LogOff_URL");
+//     }
+// }
 $_SESSION['SessionStartTime'] = time();
 
 if (! $_SESSION['admin']){
@@ -97,7 +97,7 @@ if (! $_SESSION['admin']){
             </fieldset>
         </form>
 
-      <form action=\"request.php\" method=\"post\">
+      <form action=\"request.php\" method=\"post\" enctype=\"multipart/form-data\">
         <fieldset class=\"fieldset flex\">
           <legend>Добавление мероприятий</legend>
           <div class=\"all_input\">
@@ -181,6 +181,12 @@ if (! $_SESSION['admin']){
                 </select>
               </label>
             </div>
+            <div class="input">
+              <label for="#image" class="input__label flex">Афиша
+                <input type="file" name="image" id="image" required>
+              </label>
+            </div>
+
             <input class="btn_concert add_concert" type="submit" name="add_concert" value="Добавить" disabled>
           </div>
         </fieldset>
@@ -202,6 +208,8 @@ if (! $_SESSION['admin']){
                   <th>Комментарий</th>
                   <th>Расходы</th>
                   <th>Статус переговоров</th>
+                  <th>Афиша</th>
+                  <th class=\"admin_poster\">Название</th>
                 </tr>";
 
                 foreach ($concerts_array as $c) {
@@ -215,6 +223,7 @@ if (! $_SESSION['admin']){
                       $comments = $concert['Комментарий'];
                       $cost = $concert['Расходы'];
                       $status = $concert['Статус переговоров'];
+                      $poster = $concert['Афиша'];
                   }
                   echo "<tr>
                           <td>$data</td>
@@ -225,6 +234,17 @@ if (! $_SESSION['admin']){
                           <td>$comments</td>
                           <td>$cost</td>
                           <td>$status</td>
+                          <td>";
+
+                            $src_img = "$dir/$poster";
+                            if ($poster && file_exists($src_img)) {
+                              echo "<div class=\"section-admin__afisha\"><img id=\"poster\" class=\"section-admin__afisha-img\" src=\"$src_img\" alt=\"\"/></div>";
+                            } else {
+                              echo "<div class=\"section-admin__afisha\"><img id=\"poster\" class=\"section-admin__afisha-img\" src=\"$dir/орел.jpg\" alt=\"Rock-staR Орел\"/></div>";
+                            }
+
+                          echo"</td>
+                        <td class=\"admin_poster\">$name</td>
                           <td class=\"btn_edit\">
                             <a href=\"/edit.php/?edit_id=$id\">
                             <svg class=\"edit_icon\" width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">
