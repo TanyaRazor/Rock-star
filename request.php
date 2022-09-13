@@ -93,19 +93,6 @@ while ($rows = mysqli_fetch_assoc($sql9)) {
 //   $director_array[][] = $rows;
 // }
 
-if (isset($_GET['delete_id'])) {
-  $sql = mysqli_query($con, "DELETE FROM `Концерты` WHERE `ID` = {$_GET['delete_id']}");
-  if ($sql) {
-    header("Refresh: 1;" ."/admin.php");
-    exit;
-  } else {
-    header("Refresh: 1;" ."/admin.php");
-    exit;
-  }
-}
-
-
-
 
 
 if (isset($_POST['btn_city'])) {
@@ -280,7 +267,7 @@ if (isset($_POST['add_concert'])) {
         $date_poster = date('Y-m-d',strtotime($date));
         $name_poster = $date_poster . "_" . $name . $format;
 
-      // Переместим картинку с новым именем и расширением в папку /upload
+      // Переместим картинку с новым именем и расширением в папку
       if (!move_uploaded_file($fileTmpName, __DIR__ . "/img/афиши/" . $name_poster)) {
           die('При записи изображения на диск произошла ошибка.');
       }
@@ -400,7 +387,7 @@ if ($src_poster){
 
 
 
-$sql = mysqli_query($con, "UPDATE `Концерты` SET `дата_время_начала`='$date', `Название` = '$name', `группы`='$groups_name', `тип_концерта`='$type_id', `условия`='$condition_id', `комментарий`='$comment_edit', `расходы`='$costs_edit', `статус_переговоров`='$status_id', `афиша`='$poster_edit' WHERE `Концерты`.`id` = '$id'");
+  $sql = mysqli_query($con, "UPDATE `Концерты` SET `дата_время_начала`='$date', `Название` = '$name', `группы`='$groups_name', `тип_концерта`='$type_id', `условия`='$condition_id', `комментарий`='$comment_edit', `расходы`='$costs_edit', `статус_переговоров`='$status_id', `афиша`='$poster_edit' WHERE `Концерты`.`id` = '$id'");
   if ($sql) {
     header("Refresh: 1;" ."/admin.php");
     exit;
@@ -410,6 +397,24 @@ $sql = mysqli_query($con, "UPDATE `Концерты` SET `дата_время_н
   }
 }
 
+
+
+
+if (isset($_GET['delete_id'])) {
+  $sql = mysqli_query($con, "SELECT `афиша` FROM `Концерты` WHERE `ID` = {$_GET['delete_id']}");
+  foreach ($sql as $file){
+    $filepath = __DIR__ . "/img/афиши/" . $file['афиша'];
+  }
+  unlink($filepath);
+  $sql = mysqli_query($con, "DELETE FROM `Концерты` WHERE `ID` = {$_GET['delete_id']}");
+  if ($sql) {
+    header("Refresh: 1;" ."/admin.php");
+    exit;
+  } else {
+    header("Refresh: 1;" ."/admin.php");
+    exit;
+  }
+}
 
 
 
