@@ -34,7 +34,7 @@ $(function() {
     });
 
 
-    $('.section_events__post-descr').click(function() {
+    $('.tab-content').click(function() {
         let id = $(this).attr('id');
         let header = $('#post' + id).find(".section-events__post-header").text();
         let date = $('#post' + id).find(".section-events__post-date").text();
