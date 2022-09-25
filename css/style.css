@@ -413,6 +413,7 @@ body {
 }
 
 .section-events__post {
+    margin-bottom: 30px;
     color: #333333;
     width: 1200px;
     background: rgba(225, 225, 225, 0.7);
@@ -766,6 +767,7 @@ select {
     width: 45%;
     text-align: justify;
     font-size: 22px;
+    white-space: pre-wrap;
 }
 
 .section-events__modal-afisha {

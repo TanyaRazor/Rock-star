@@ -8,7 +8,11 @@ include_once 'config.php';
 
 // $sql_concerts = "SELECT `Концерты`.`дата_время_начала` as `Дата и время начала`, `Группы`.`name` as `Группа`, `Тип_концерта`.`имя` as `Тип`, `Условия_выступления`.`имя` as `Условия выступления`, `Концерты`.`комментарий` as `Условия`, `Концерты`.`расходы` as `Расходы`, `Статус_переговоров`.`имя`as `Статус переговоров`";
 
-$sql = mysqli_query($con, "SELECT date(`дата_время_начала`) as `Дата`, `название` as `Название`, `группы` as `Группы`, `афиша` as `Афиша` from `Концерты` WHERE date(`дата_время_начала`) >= CURRENT_DATE ORDER BY `Дата` ASC");
+$sql = mysqli_query($con, "SELECT id, date(`дата_время_начала`) as `Дата`, `название` as `Название`, `группы` as `Группы`, `афиша` as `Афиша` from `Концерты` WHERE date(`дата_время_начала`) >= CURRENT_DATE ORDER BY `Дата` ASC");
+
+$archive_concerts = mysqli_query($con, "SELECT id, date(`дата_время_начала`) as `Дата`, `название` as `Название`, `группы` as `Группы`, `афиша` as `Афиша` from `Концерты` WHERE date(`дата_время_начала`) < CURRENT_DATE ORDER BY `Дата` ASC");
+
+$sql_post = mysqli_query($con, "SELECT * FROM `Посты`");
 
 $sql1 = mysqli_query($con, "SELECT * FROM `Город` ORDER BY `имя`");
 
@@ -46,6 +50,8 @@ $status_array = array();
 $concerts_array = array();
 $director_array = array();
 $genre_array = array();
+$archive_array = array();
+$posts_array = array();
 
 while ($rows = mysqli_fetch_assoc($sql)) {
   $res_array[][] = $rows;
@@ -86,12 +92,12 @@ while ($rows = mysqli_fetch_assoc($sql8)) {
 while ($rows = mysqli_fetch_assoc($sql9)) {
   $genre_array[][] = $rows;
 }
-// while ($rows = mysqli_fetch_assoc($sql8)) {
-//   $director_array[][] = $rows;
-// }
-// while ($rows = mysqli_fetch_assoc($sql8)) {
-//   $director_array[][] = $rows;
-// }
+while ($rows = mysqli_fetch_assoc($sql_post)) {
+  $posts_array[][] = $rows;
+}
+while ($rows = mysqli_fetch_assoc($archive_concerts)) {
+  $archive_array[][] = $rows;
+}
 
 
 

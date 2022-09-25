@@ -34,12 +34,12 @@ $(function() {
     });
 
 
-    $('.tab-content').click(function() {
+    $('.section-events__post').click(function() {
         let id = $(this).attr('id');
-        let header = $('#post' + id).find(".section-events__post-header").text();
-        let date = $('#post' + id).find(".section-events__post-date").text();
-        let descr = $('#post' + id).find(".section_events__post-descr").text();
-        let src = $('#post' + id).find(".section-events__post-img").attr('src');
+        let header = $('#' + id).find(".section-events__post-header").text();
+        let date = $('#' + id).find(".section-events__post-date").text();
+        let descr = $('#' + id).find(".section_events__post-descr").text();
+        let src = $('#' + id).find(".section-events__post-img").attr('src');
         $('.section-events__modal-header').text(header);
         $('.section-events__modal-date').text(date);
         $('.section_events__modal-descr').text(descr);
