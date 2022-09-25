@@ -33,6 +33,27 @@ $(function() {
         }
     });
 
+
+    $('.section_events__post-descr').click(function() {
+        let id = $(this).attr('id');
+        let header = $('#post' + id).find(".section-events__post-header").text();
+        let date = $('#post' + id).find(".section-events__post-date").text();
+        let descr = $('#post' + id).find(".section_events__post-descr").text();
+        let src = $('#post' + id).find(".section-events__post-img").attr('src');
+        $('.section-events__modal-header').text(header);
+        $('.section-events__modal-date').text(date);
+        $('.section_events__modal-descr').text(descr);
+        $('.section-events__modal-img').attr('src', src);
+
+        $('.modal_post').fadeIn();
+    });
+
+    $(document).click(function(e) {
+        if ($(e.target).is('.modal_post div')) {
+            $('.modal_post').fadeOut();
+        }
+    });
+
     // if ($('#load_image_edit').val()) {
     // var name_poster = $('#load_image_edit').val();
     // $('#poster_img_edit').attr("value", "123");
