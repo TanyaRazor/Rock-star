@@ -41,7 +41,7 @@
             foreach ($res_array as $res) {
               foreach ($res as $result) {
                 $id = $result['id'];
-                $data = $result['Дата'];
+                $data = $result['Дата и время'];
                 $name = $result['Название'];
                 $poster = $result['Афиша'];
               }

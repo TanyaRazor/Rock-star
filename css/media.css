@@ -256,6 +256,13 @@
     .section-events__posts {
         width: 300px;
     }
+    .btn_modal {
+        flex-direction: column;
+    }
+    .btn_modal>button {
+        margin-bottom: 15px;
+    }
+    /* modal */
     .nav-link {
         font-size: 15px;
         line-height: 20px;
@@ -329,6 +336,9 @@
         font-size: 11px;
         width: 100%;
         text-align: justify;
+    }
+    .btn_refresh_concerts {
+        margin-top: 20px;
     }
 }
 
@@ -556,6 +566,13 @@
     .section-events__posts {
         width: 400px;
     }
+    .btn_modal {
+        flex-wrap: wrap;
+    }
+    .btn_modal>button {
+        margin-bottom: 15px;
+    }
+    /* modal */
     .nav-link {
         font-size: 20px;
         line-height: 35px;
@@ -855,6 +872,13 @@
     .section-events__posts {
         width: 550px;
     }
+    .btn_modal {
+        flex-wrap: wrap;
+    }
+    .btn_modal>button {
+        margin-bottom: 15px;
+    }
+    /* modal */
     .nav-link {
         font-size: 30px;
         line-height: 45px;
@@ -1085,6 +1109,12 @@
     .section-events__posts {
         width: 800px;
     }
+    .btn_modal {
+        flex-wrap: wrap;
+    }
+    .btn_modal>button {
+        margin-bottom: 15px;
+    }
     .nav-link {
         font-size: 40px;
         line-height: 55px;
@@ -1280,6 +1310,13 @@
     .section-events__posts {
         width: 800px;
     }
+    .btn_modal {
+        flex-wrap: wrap;
+    }
+    .btn_modal>button {
+        margin-bottom: 15px;
+    }
+    /* modal */
     .nav-link {
         font-size: 40px;
         line-height: 55px;

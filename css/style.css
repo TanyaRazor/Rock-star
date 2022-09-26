@@ -577,6 +577,12 @@ body {
     flex-direction: column;
 }
 
+.modal_fieldset {
+    margin: 0 auto;
+    width: 70%;
+    border: 1px solid #52E;
+}
+
 .table {
     vertical-align: middle;
 }
@@ -829,6 +835,18 @@ select {
     color: #bbb;
     text-decoration: none;
     cursor: pointer;
+}
+
+.btn_modal {
+    display: flex;
+    justify-content: space-between;
+    width: 70%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.btn_refresh_concerts {
+    margin-top: 20px;
 }
 
 

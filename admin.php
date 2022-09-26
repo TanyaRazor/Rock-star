@@ -27,12 +27,27 @@ if (! $_SESSION['admin']){
     <div class="container-fluid section-admin__container">
 
     <a href="logout.php">Выйти</a>
+
+    <form action="request.php" method="post">
+      <input class="btn btn-outline-primary btn_refresh_concerts" type="submit" name="btn_ref" value="Обновить">
+    </form>
+
+    <div class="btn_modal">
+      <button id = "btn_add_city" class="btn btn-outline-secondary" type="submit">Добавить город</button>
+      <button id = "btn_add_agent" class="btn btn-outline-secondary" type="submit">Добавить представителя</button>
+      <button id = "btn_add_group" class="btn btn-outline-secondary" type="submit">Добавить группу</button>
+      <button id = "btn_add_event" class="btn btn-outline-secondary" type="submit">Добавить мероприятие</button>
+    </div>
+
       <?php include 'request.php';
 
 
 
-    echo "<form action=\"request.php\" method=\"post\">
-            <fieldset class=\"fieldset\">
+
+
+    echo "<div id=\"modal_btn_add_city\" class=\"modal_post\">
+          <form action=\"request.php\" method=\"post\">
+            <fieldset class=\"fieldset modal_fieldset\">
               <legend>Добавление города</legend>
               <input class=\"input\" type=\"text\" name=\"city\" id=\"input_city\" placeholder=\"Введите город...\" onchange=\"toggleButton()\">
               <select name=\"countries\" id=\"countries\" class=\"section-admin__select-country\" onchange=\"toggleButton()\">
@@ -49,9 +64,11 @@ if (! $_SESSION['admin']){
               <input class=\"btn_concert add_city\" type=\"submit\" name=\"btn_city\" value=\"Добавить\" disabled>
               </fieldset>
           </form>
+          </div>
 
+          <div id=\"modal_btn_add_agent\" class=\"modal_post\">
           <form action=\"request.php\" method=\"post\">
-            <fieldset class=\"fieldset\">
+            <fieldset class=\"fieldset modal_fieldset\">
               <legend>Добавление представителя</legend>
               <input class=\"input\" type=\"text\" id=\"agent\" name=\"agent\" placeholder=\"Ф. И. О.\" onchange=\"toggleButton()\">
               <input class=\"input\" type=\"tel\" name=\"phone\" id=\"phone\" placeholder=\"+71234567890\">
@@ -68,10 +85,12 @@ if (! $_SESSION['admin']){
             echo"</select>
             <input class=\"btn_concert add_agent\" type=\"submit\" name=\"btn_agents\" value=\"Добавить\" disabled>
             </fieldset>
+            </div>
         </form>
 
+        <div id=\"modal_btn_add_group\" class=\"modal_post\">
         <form action=\"request.php\" method=\"post\">
-            <fieldset class=\"fieldset\">
+            <fieldset class=\"fieldset modal_fieldset\">
               <legend>Добавление группы</legend>
               <input class=\"input\" type=\"text\" id=\"group\" name=\"group\" placeholder=\"Название группы\" onchange=\"toggleButton()\">
             <select name=\"agents\" id=\"agents\" class=\"section-admin__agents_name\" onchange=\"toggleButton()\">
@@ -95,101 +114,104 @@ if (! $_SESSION['admin']){
             echo"</select>
             <input class=\"btn_concert add_group\" type=\"submit\" name=\"btn_groups\" value=\"Добавить\" disabled>
             </fieldset>
+          </div>
         </form>
 
-      <form action=\"request.php\" method=\"post\" enctype=\"multipart/form-data\">
-        <fieldset class=\"fieldset flex\">
-          <legend>Добавление мероприятий</legend>
-          <div class=\"all_input\">
-            <div class=\"input\">
-              <label class=\"input__label flex\" for=\"#date\">Дата мероприятия
-                <input class=\"input\" type=\"datetime-local\" name=\"date\" id=\"date\" onchange=\"toggleButton()\">
-              </label>
-            </div>
-            <div class=\"input\">
-              <label class=\"input__label flex\" for=\"#name_activity\">Название
-                <input class=\"input\" type=\"name_activity\" name=\"name_activity\" id=\"name_activity\" onchange=\"toggleButton()\">
-              </label>
-            </div>
+        <div id=\"modal_btn_add_event\" class=\"modal_post\">
+          <form action=\"request.php\" method=\"post\" enctype=\"multipart/form-data\">
+            <fieldset class=\"fieldset modal_fieldset flex\">
+              <legend>Добавление мероприятий</legend>
+              <div class=\"all_input\">
+                <div class=\"input\">
+                  <label class=\"input__label flex\" for=\"#date\">Дата мероприятия
+                    <input class=\"input\" type=\"datetime-local\" name=\"date\" id=\"date\" onchange=\"toggleButton()\">
+                  </label>
+                </div>
+                <div class=\"input\">
+                  <label class=\"input__label flex\" for=\"#name_activity\">Название
+                    <input class=\"input\" type=\"name_activity\" name=\"name_activity\" id=\"name_activity\" onchange=\"toggleButton()\">
+                  </label>
+                </div>
 
-            <div class=\"input\">
-              <label class=\"input__label flex\" for=\"#groups\">Группа
-                <select class=\"chosen-select\" data-placeholder=\"Выберите группы...\" name=\"groups[]\" id=\"groups_select\" multiple onchange=\"toggleButton()\">";
-                // <option value=\"NULL\" selected disabled hidden>Группа</option>";
+                <div class=\"input\">
+                  <label class=\"input__label flex\" for=\"#groups\">Группа
+                    <select class=\"chosen-select\" data-placeholder=\"Выберите группы...\" name=\"groups[]\" id=\"groups_select\" multiple onchange=\"toggleButton()\">";
+                    // <option value=\"NULL\" selected disabled hidden>Группа</option>";
 
-                foreach ($group_array as $gr) {
-                  foreach ($gr as $group) {
-                    $group_name = $group['name'];
-                  }
-                  echo "<option value=\"$group_name\">$group_name</option>";
-                }
-          echo "</select>
-              </label>
-            </div>
-
-            <div class=\"input\">
-              <label class=\"input__label flex\" for=\"#type_concert\">Тип концерта
-                <select name=\"type_concert\" id=\"type_concert\" onchange=\"toggleButton()\">
-                  <option value=\"NULL\" selected disabled hidden>Тип концерта</option>";
-                  foreach ($type_concert_array as $t) {
-                    foreach ($t as $type) {
-                      $type_concert = $type['имя'];
+                    foreach ($group_array as $gr) {
+                      foreach ($gr as $group) {
+                        $group_name = $group['name'];
+                      }
+                      echo "<option value=\"$group_name\">$group_name</option>";
                     }
-                    echo "<option value=\"$type_concert\">$type_concert</option>";
-                  }
-          echo "</select>
-              </label>
-            </div>
+              echo "</select>
+                  </label>
+                </div>
 
-            <div class=\"input\">
-              <label class=\"input__label flex\" for=\"#conditions\">Условия
-                <select name=\"conditions\" id=\"conditions\"\ onchange=\"toggleButton()\">
-                  <option value=\"NULL\" selected disabled hidden>Условия</option>";
-                  foreach ($conditions_array as $c) {
-                    foreach ($c as $condition) {
-                      $condition_name = $condition['имя'];
-                    }
-                    echo "<option value=\"$condition_name\">$condition_name</option>";
-                  }
-            echo "</select>
-              </label>
-            </div>
+                <div class=\"input\">
+                  <label class=\"input__label flex\" for=\"#type_concert\">Тип концерта
+                    <select name=\"type_concert\" id=\"type_concert\" onchange=\"toggleButton()\">
+                      <option value=\"NULL\" selected disabled hidden>Тип концерта</option>";
+                      foreach ($type_concert_array as $t) {
+                        foreach ($t as $type) {
+                          $type_concert = $type['имя'];
+                        }
+                        echo "<option value=\"$type_concert\">$type_concert</option>";
+                      }
+              echo "</select>
+                  </label>
+                </div>
 
-            <div class=\"input\">
-              <label class=\"input__label flex\" for=\"#comments\">Комментарий
-                <input class=\"input\" type=\"text\" name=\"comments\" id=\"comments\" placeholder=\"Комментарий...\">
-              </label>
-            </div>
+                <div class=\"input\">
+                  <label class=\"input__label flex\" for=\"#conditions\">Условия
+                    <select name=\"conditions\" id=\"conditions\"\ onchange=\"toggleButton()\">
+                      <option value=\"NULL\" selected disabled hidden>Условия</option>";
+                      foreach ($conditions_array as $c) {
+                        foreach ($c as $condition) {
+                          $condition_name = $condition['имя'];
+                        }
+                        echo "<option value=\"$condition_name\">$condition_name</option>";
+                      }
+                echo "</select>
+                  </label>
+                </div>
 
-            <div class=\"input\">
-              <label class=\"input__label flex\" for=\"#costs\">Расходы
-                <input type=\"checkbox\" name=\"costs\" id=\"costs\">
-              </label>
-            </div>
+                <div class=\"input\">
+                  <label class=\"input__label flex\" for=\"#comments\">Комментарий
+                    <input class=\"input\" type=\"text\" name=\"comments\" id=\"comments\" placeholder=\"Комментарий...\">
+                  </label>
+                </div>
 
-            <div class=\"input\">
-              <label class=\"input__label flex\" for=\"#status\">Статус переговоров
-                <select class=\"input\" name=\"status\" id=\"status\" onchange=\"toggleButton()\">
-                  <option value=\"NULL\" selected disabled hidden>Статус переговоров</option>";
-                  foreach ($status_array as $st) {
-                    foreach ($st as $status) {
-                      $status_name = $status['имя'];
-                    }
-                    echo "<option value=\"$status_name\">$status_name</option>";
-                  }?>
+                <div class=\"input\">
+                  <label class=\"input__label flex\" for=\"#costs\">Расходы
+                    <input type=\"checkbox\" name=\"costs\" id=\"costs\">
+                  </label>
+                </div>
 
-                </select>
-              </label>
-            </div>
-            <div class="input">
-              <label for="#image" class="input__label flex">Афиша
-                <input type="file" name="image" id="image" required>
-              </label>
-            </div>
+                <div class=\"input\">
+                  <label class=\"input__label flex\" for=\"#status\">Статус переговоров
+                    <select class=\"input\" name=\"status\" id=\"status\" onchange=\"toggleButton()\">
+                      <option value=\"NULL\" selected disabled hidden>Статус переговоров</option>";
+                      foreach ($status_array as $st) {
+                        foreach ($st as $status) {
+                          $status_name = $status['имя'];
+                        }
+                        echo "<option value=\"$status_name\">$status_name</option>";
+                      }?>
 
-            <input class="btn_concert add_concert" type="submit" name="add_concert" value="Добавить" disabled>
+                    </select>
+                  </label>
+                </div>
+                <div class="input">
+                  <label for="#image" class="input__label flex">Афиша
+                    <input type="file" name="image" id="image" required>
+                  </label>
+                </div>
+
+                <input class="btn_concert add_concert" type="submit" name="add_concert" value="Добавить" disabled>
+              </div>
+            </fieldset>
           </div>
-        </fieldset>
       </form>
 
 

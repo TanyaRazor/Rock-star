@@ -8,9 +8,9 @@ include_once 'config.php';
 
 // $sql_concerts = "SELECT `Концерты`.`дата_время_начала` as `Дата и время начала`, `Группы`.`name` as `Группа`, `Тип_концерта`.`имя` as `Тип`, `Условия_выступления`.`имя` as `Условия выступления`, `Концерты`.`комментарий` as `Условия`, `Концерты`.`расходы` as `Расходы`, `Статус_переговоров`.`имя`as `Статус переговоров`";
 
-$sql = mysqli_query($con, "SELECT id, date(`дата_время_начала`) as `Дата`, `название` as `Название`, `группы` as `Группы`, `афиша` as `Афиша` from `Концерты` WHERE date(`дата_время_начала`) >= CURRENT_DATE ORDER BY `Дата` ASC");
+$sql = mysqli_query($con, "SELECT id, DATE_FORMAT(`дата_время_начала`, '%d.%m.%Y %H:%i') as `Дата и время`, date(`дата_время_начала`) as `Дата`, `название` as `Название`, `группы` as `Группы`, `афиша` as `Афиша` from `Концерты` WHERE date(`дата_время_начала`) >= CURRENT_DATE ORDER BY `Дата` ASC");
 
-$archive_concerts = mysqli_query($con, "SELECT id, date(`дата_время_начала`) as `Дата`, `название` as `Название`, `группы` as `Группы`, `афиша` as `Афиша` from `Концерты` WHERE date(`дата_время_начала`) < CURRENT_DATE ORDER BY `Дата` ASC");
+$archive_concerts = mysqli_query($con, "SELECT id, DATE_FORMAT(`дата_время_начала`, '%d.%m.%Y %H:%i') as `Дата`, `название` as `Название`, `группы` as `Группы`, `афиша` as `Афиша` from `Концерты` WHERE date(`дата_время_начала`) < CURRENT_DATE ORDER BY `Дата` ASC");
 
 $sql_post = mysqli_query($con, "SELECT * FROM `Посты`");
 
@@ -422,7 +422,17 @@ if (isset($_GET['delete_id'])) {
   }
 }
 
+if (isset($_POST['btn_ref'])){
+  $sql = mysqli_query($con, "UPDATE `Концерты` SET `статус_переговоров` = 4 WHERE `статус_переговоров` < 4 AND `дата_время_начала` < CURRENT_DATE");
 
+  if ($sql) {
+    header("Refresh: 1;" ."/admin.php");
+    exit;
+  } else {
+    header("Refresh: 1;" ."/admin.php");
+    exit;
+  }
+}
 
 // $res_sql_concerts = mysqli_query($con, $sql_concerts);
 
