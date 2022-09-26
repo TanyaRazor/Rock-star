@@ -231,8 +231,26 @@ if (! $_SESSION['admin']){
             </form>
           </div>
 
-        <fieldset class=\"fieldset table-responsive\">
-              <legend>Мероприятия</legend>
+          <ul class=\"nav nav-tabs\" role=\"tablist\" id=\"my-admin-tab\">
+          <li class=\"nav-item\" role=\"presentation\">
+            <button class=\"nav-link admin_tab active\" id=\"agents_tab\" data-bs-toggle=\"tab\" data-bs-target=\"#agents\" type=\"button\" role=\"tab\" aria-controls=\"agents\" aria-selected=\"true\">Представители</button>
+          </li>
+          <li class=\"nav-item\" role=\"presentation\">
+            <button class=\"nav-link admin_tab\" id=\"groups_tab\" data-bs-toggle=\"tab\" data-bs-target=\"#groups\" type=\"button\" role=\"tab\" aria-controls=\"groups\" aria-selected=\"true\">Группы</button>
+          </li>
+          <li class=\"nav-item\" role=\"presentation\">
+            <button class=\"nav-link admin_tab\" id=\"events_tab\" data-bs-toggle=\"tab\" data-bs-target=\"#events\" type=\"button\" role=\"tab\" aria-controls=\"events\" aria-selected=\"true\">Мероприятия</button>
+          </li>
+          <li class=\"nav-item\" role=\"presentation\">
+            <button class=\"nav-link admin_tab\" id=\"posts_tab\" data-bs-toggle=\"tab\" data-bs-target=\"#posts\" type=\"button\" role=\"tab\" aria-controls=\"posts\" aria-selected=\"true\">Посты</button>
+          </li>
+          </ul>
+
+          <div class=\"tab-content\">
+
+
+            <div class=\"tab-pane fade admin_contents\" id=\"events\">
+              <fieldset class=\"fieldset table-responsive\">
                 <table class=\"table\">
                 <tr>
                   <th>Дата</th>
@@ -301,6 +319,8 @@ if (! $_SESSION['admin']){
           </tbody>
         </table>
       </fieldset>
+      </div>
+      </div>
       </div>
     </div>
 </body>
