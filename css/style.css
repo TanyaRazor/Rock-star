@@ -424,7 +424,10 @@ body {
 }
 
 .section-events__post-header {
-    display: inline-block;
+    /* display: inline-block; */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     font-weight: 900;
     font-size: 36px;
     line-height: 44px;

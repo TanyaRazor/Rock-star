@@ -279,7 +279,7 @@
     }
     .tab-content {}
     .section-events__post {
-        width: 300px;
+        width: 250px;
         height: 140px;
     }
     .section-events__post-header {
@@ -309,7 +309,6 @@
     }
     .section-events__post-afisha {
         width: 100%;
-        margin-right: 25px;
     }
     .section-events__post-img {
         width: inherit;
@@ -1350,10 +1349,12 @@
         max-width: 90%;
         -webkit-line-clamp: 3;
     }
+    .section-events__post-one {
+        width: 75%;
+    }
     .section-events__post-two {}
     .section-events__post-afisha {
         width: 100%;
-        margin-right: 50px;
     }
     .section-events__post-img {
         width: inherit;
