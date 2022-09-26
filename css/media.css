@@ -244,6 +244,9 @@
     .admin_poster {
         display: table-cell;
     }
+    .section-admin__select-concerts {
+        width: inherit;
+    }
     .section-edit__afisha {
         height: 20vh;
     }
@@ -566,6 +569,9 @@
     .section-events__posts {
         width: 400px;
     }
+    .section-admin__select-concerts {
+        width: inherit;
+    }
     .btn_modal {
         flex-wrap: wrap;
     }
@@ -865,6 +871,9 @@
     /* admin */
     .admin_poster {
         display: table-cell;
+    }
+    .section-admin__select-concerts {
+        width: inherit;
     }
     .section-edit__afisha {
         height: 20vh;

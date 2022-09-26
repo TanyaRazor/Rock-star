@@ -609,8 +609,8 @@ select {
 
 .form-textarea {
     width: 65%;
-    height: 80vh;
     margin-right: 20px;
+    margin-bottom: 20px;
 }
 
 #costs {

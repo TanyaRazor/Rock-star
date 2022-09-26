@@ -122,7 +122,6 @@ if (! $_SESSION['admin']){
           <form action=\"request.php\" method=\"post\" enctype=\"multipart/form-data\">
             <fieldset class=\"fieldset modal_fieldset flex\">
               <legend>Добавление мероприятий</legend>
-              <div class=\"all_input\">
                 <div class=\"input\">
                   <label class=\"input__label flex\" for=\"#date\">Дата мероприятия
                     <input class=\"input\" type=\"datetime-local\" name=\"date\" id=\"date\" onchange=\"toggleButton()\">
@@ -208,7 +207,6 @@ if (! $_SESSION['admin']){
                 </div>
 
                 <input class=\"btn_concert add_concert\" type=\"submit\" name=\"add_concert\" value=\"Добавить\" disabled>
-              </div>
             </fieldset>
           </div>
       </form>

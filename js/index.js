@@ -55,6 +55,10 @@ $(function() {
     });
 
 
+    $(document).on("input", "textarea", function() {
+        $(this).outerHeight(38).outerHeight(this.scrollHeight);
+    });
+
 
     // $('.btn_add_agent').click(function() {
     //     $('.modal_post').fadeIn();
