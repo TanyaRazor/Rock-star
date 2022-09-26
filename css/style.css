@@ -572,15 +572,15 @@ body {
 }
 
 .fieldset {
-    width: 100%;
-    border: 1px solid #333333;
-    flex-direction: column;
+    display: flex;
+    align-items: flex-start;
 }
 
 .modal_fieldset {
     margin: 0 auto;
-    width: 70%;
+    width: 75%;
     border: 1px solid #52E;
+    flex-wrap: wrap;
 }
 
 .table {
@@ -592,9 +592,14 @@ body {
     flex-wrap: wrap;
 }
 
+.chosen-container {
+    width: 100%!important;
+}
+
 .input,
 select {
     margin-right: 20px;
+    margin-bottom: 15px;
     width: fit-content;
 }
 
@@ -602,12 +607,17 @@ select {
     flex-direction: column;
 }
 
+.form-textarea {
+    width: 65%;
+    height: 80vh;
+    margin-right: 20px;
+}
+
 #costs {
     margin-top: 5px;
 }
 
 .btn_concert {
-    align-self: end;
     width: fit-content;
     height: fit-content;
 }
@@ -783,6 +793,12 @@ select {
 
 .section-events__modal-img {
     width: 100%;
+}
+
+.section-admin__select-concerts {
+    margin-right: 20px;
+    width: fit-content;
+    height: fit-content;
 }
 
 

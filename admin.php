@@ -37,6 +37,7 @@ if (! $_SESSION['admin']){
       <button id = "btn_add_agent" class="btn btn-outline-secondary" type="submit">Добавить представителя</button>
       <button id = "btn_add_group" class="btn btn-outline-secondary" type="submit">Добавить группу</button>
       <button id = "btn_add_event" class="btn btn-outline-secondary" type="submit">Добавить мероприятие</button>
+      <button id = "btn_add_post" class="btn btn-outline-secondary" type="submit">Добавить пост</button>
     </div>
 
       <?php include 'request.php';
@@ -136,8 +137,6 @@ if (! $_SESSION['admin']){
                 <div class=\"input\">
                   <label class=\"input__label flex\" for=\"#groups\">Группа
                     <select class=\"chosen-select\" data-placeholder=\"Выберите группы...\" name=\"groups[]\" id=\"groups_select\" multiple onchange=\"toggleButton()\">";
-                    // <option value=\"NULL\" selected disabled hidden>Группа</option>";
-
                     foreach ($group_array as $gr) {
                       foreach ($gr as $group) {
                         $group_name = $group['name'];
@@ -197,28 +196,44 @@ if (! $_SESSION['admin']){
                           $status_name = $status['имя'];
                         }
                         echo "<option value=\"$status_name\">$status_name</option>";
-                      }?>
+                      }
 
-                    </select>
+                    echo "</select>
                   </label>
                 </div>
-                <div class="input">
-                  <label for="#image" class="input__label flex">Афиша
-                    <input type="file" name="image" id="image" required>
+                <div class=\"input\">
+                  <label for=\"#image\" class=\"input__label flex\">Афиша
+                    <input type=\"file\" name=\"image\" id=\"image\" required>
                   </label>
                 </div>
 
-                <input class="btn_concert add_concert" type="submit" name="add_concert" value="Добавить" disabled>
+                <input class=\"btn_concert add_concert\" type=\"submit\" name=\"add_concert\" value=\"Добавить\" disabled>
               </div>
             </fieldset>
           </div>
       </form>
+      <div id=\"modal_btn_add_post\" class=\"modal_post\">
+          <form action=\"request.php\" method=\"post\">
+            <fieldset class=\"fieldset modal_fieldset\">
+              <legend>Добавление поста</legend>
+              <select name=\"concerts_name\" id=\"concerts_name\" class=\"section-admin__select-concerts\" onchange=\"toggleButton()\">
+              <option value=\"NULL\" selected disabled hidden>Концерт</option>";
+              foreach ($concerts_array as $c) {
+                foreach ($c as $concert) {
+                    $id = $concert['id'];
+                    $name = $concert['Название'];
+                }
+                  echo "<option value=\"$name\" class=\"\">$name</option>";
+                }
 
+              echo"</select>
+              <textarea class=\"form-textarea\" name=\"post\" id=\"post\" placeholder=\"Описание...\" onchange=\"toggleButton()\"></textarea>
+              <input class=\"btn_concert add_post\" type=\"submit\" name=\"btn_post\" value=\"Добавить\" disabled>
+              </fieldset>
+            </form>
+          </div>
 
-
-        <?php include 'request.php';
-
-        echo "<fieldset class=\"fieldset table-responsive\">
+        <fieldset class=\"fieldset table-responsive\">
               <legend>Мероприятия</legend>
                 <table class=\"table\">
                 <tr>

@@ -67,7 +67,7 @@ $(function() {
     // });
 
     $(document).click(function(e) {
-        if ($(e.target).is('.modal_post')) {
+        if ($(e.target).is('.modal_post form') || $(e.target).is('.modal_post') || $(e.target).is('.modal_post div')) {
             $('.modal_post').fadeOut();
         }
     });
@@ -131,6 +131,9 @@ function toggleButton() {
     $conditions = $('#conditions').val();
     $status = $('#status').val();
 
+    $concerts_name = $("#concerts_name").val();
+    $post = $("#post").val();
+
     if ($input_city && $select_country) {
         $('.add_city').attr('disabled', false);
     } else {
@@ -153,6 +156,12 @@ function toggleButton() {
         $('.add_concert').attr('disabled', false);
     } else {
         $('.add_concert').attr('disabled', true);
+    }
+
+    if ($concerts_name && $post) {
+        $('.add_post').attr('disabled', false);
+    } else {
+        $('.add_post').attr('disabled', true);
     }
 }
 // function theRotator() {

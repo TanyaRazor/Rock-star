@@ -10,7 +10,7 @@ include_once 'config.php';
 
 $sql = mysqli_query($con, "SELECT id, DATE_FORMAT(`дата_время_начала`, '%d.%m.%Y %H:%i') as `Дата и время`, date(`дата_время_начала`) as `Дата`, `название` as `Название`, `группы` as `Группы`, `афиша` as `Афиша` from `Концерты` WHERE date(`дата_время_начала`) >= CURRENT_DATE ORDER BY `Дата` ASC");
 
-$archive_concerts = mysqli_query($con, "SELECT id, DATE_FORMAT(`дата_время_начала`, '%d.%m.%Y %H:%i') as `Дата`, `название` as `Название`, `группы` as `Группы`, `афиша` as `Афиша` from `Концерты` WHERE date(`дата_время_начала`) < CURRENT_DATE ORDER BY `Дата` ASC");
+$archive_concerts = mysqli_query($con, "SELECT id, DATE_FORMAT(`дата_время_начала`, '%d.%m.%Y %H:%i') as `Дата`, date(`дата_время_начала`) as `Дата2`, `название` as `Название`, `группы` as `Группы`, `афиша` as `Афиша` from `Концерты` WHERE date(`дата_время_начала`) < CURRENT_DATE ORDER BY `Дата2` DESC");
 
 $sql_post = mysqli_query($con, "SELECT * FROM `Посты`");
 
@@ -32,7 +32,7 @@ $sql8 = mysqli_query($con, "SELECT `Представитель`.`имя` as `И�
 
 $sql9 = mysqli_query($con, "SELECT * FROM `Жанр_группы`");
 
-// $sql4 = mysqli_query($con, "SELECT * FROM `Тип_концерта`");
+$sql0 = mysqli_query($con, "SELECT * FROM `Посты`");
 // $sql4 = mysqli_query($con, "SELECT * FROM `Тип_концерта`");
 // $sql4 = mysqli_query($con, "SELECT * FROM `Тип_концерта`");
 // $sql4 = mysqli_query($con, "SELECT * FROM `Тип_концерта`");
@@ -98,6 +98,9 @@ while ($rows = mysqli_fetch_assoc($sql_post)) {
 while ($rows = mysqli_fetch_assoc($archive_concerts)) {
   $archive_array[][] = $rows;
 }
+while ($rows = mysqli_fetch_assoc($sql0)) {
+  $posts_array[][] = $rows;
+}
 
 
 
@@ -160,12 +163,12 @@ if (isset($_POST['btn_groups'])) {
     $genre_id = mysqli_query($con, "SELECT `id` FROM `Жанр_группы` WHERE `имя`=\"$genre_name\"");
   }
 
-  // foreach ($genre_id as $g_id){
-  //   $genre_id = $g_id['id'];
-  // }
+  foreach ($genre_id as $g_id){
+    $genre_id = $g_id['id'];
+  }
 
 
-  $group_add = mysqli_query($con, "INSERT INTO `Группы` (`id`,`name`, `id_agent`,`id_жанра`) VALUES (NULL,'$group_name','$agent_id','$genre_id')");
+  $group_add = mysqli_query($con, "INSERT INTO `Группы` (`id`,`name`, `id_agent`,`id_жанра`) VALUES (NULL,\"$group_name\",\"$agent_id\",\"$genre_id\")");
 
   if ($group_add) {
     header("Refresh: 1;" ."/admin.php");
@@ -176,7 +179,25 @@ if (isset($_POST['btn_groups'])) {
   }
 }
 
+if (isset($_POST['btn_post'])) {
+  $consert_name = $con->real_escape_string($_POST['concerts_name']);
+  $post_descr = $con->real_escape_string($_POST['post']);
 
+  $concerts_id = mysqli_query($con, "SELECT `id` FROM `Концерты` WHERE `название`=\"$consert_name\"");
+  foreach ($concerts_id as $c_id){
+    $concert_id = $c_id['id'];
+  }
+
+  $post_add = mysqli_query($con, "INSERT INTO `Посты` (`id`,`id_концерта`, `текст`) VALUES (NULL,\"$concert_id\",\"$post_descr\")");
+
+  if ($post_add) {
+    header("Refresh: 1;" ."/admin.php");
+    exit;
+  } else {
+    header("Refresh: 1;" ."/admin.php");
+    exit;
+  }
+}
 
 
 
