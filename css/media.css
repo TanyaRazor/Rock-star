@@ -309,6 +309,7 @@
     }
     .section-events__post-afisha {
         width: 100%;
+        margin-right: 10px;
     }
     .section-events__post-img {
         width: inherit;

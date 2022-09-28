@@ -1,6 +1,7 @@
 <?php
 
 include_once 'config.php';
+include_once 'paginator.php';
 
 // $sql = "SELECT `Концерты`.`дата_время_начала` as `Дата и время начала`, `Группы`.`name` as `Группа`, `Тип_концерта`.`имя` as `Тип`, `Условия_выступления`.`имя` as `Условия выступления`, `Концерты`.`комментарий` as `Условия`, `Концерты`.`расходы` as `Расходы`, `Статус_переговоров`.`имя`as `Статус переговоров`
 //   . "FROM `Концерты`, `Тип_концерта`,`Условия_выступления`,`Группы`, `Статус_переговоров`
@@ -9,8 +10,6 @@ include_once 'config.php';
 // $sql_concerts = "SELECT `Концерты`.`дата_время_начала` as `Дата и время начала`, `Группы`.`name` as `Группа`, `Тип_концерта`.`имя` as `Тип`, `Условия_выступления`.`имя` as `Условия выступления`, `Концерты`.`комментарий` as `Условия`, `Концерты`.`расходы` as `Расходы`, `Статус_переговоров`.`имя`as `Статус переговоров`";
 
 $sql = mysqli_query($con, "SELECT id, DATE_FORMAT(`дата_время_начала`, '%d.%m.%Y %H:%i') as `Дата и время`, date(`дата_время_начала`) as `Дата`, `название` as `Название`, `группы` as `Группы`, `афиша` as `Афиша` from `Концерты` WHERE date(`дата_время_начала`) >= CURRENT_DATE ORDER BY `Дата` ASC");
-
-$archive_concerts = mysqli_query($con, "SELECT id, DATE_FORMAT(`дата_время_начала`, '%d.%m.%Y %H:%i') as `Дата`, date(`дата_время_начала`) as `Дата2`, `название` as `Название`, `группы` as `Группы`, `афиша` as `Афиша` from `Концерты` WHERE date(`дата_время_начала`) < CURRENT_DATE ORDER BY `Дата2` DESC");
 
 $sql_post = mysqli_query($con, "SELECT * FROM `Посты`");
 
@@ -26,7 +25,7 @@ $sql5 = mysqli_query($con, "SELECT * FROM `Условия_выступления
 
 $sql6 = mysqli_query($con, "SELECT * FROM `Статус_переговоров` ORDER BY `id`");
 
-$sql7 = mysqli_query($con, "SELECT `Концерты`.`id` as `id`, `Концерты`.`дата_время_начала` as `Дата`,  `название` as `Название`, `группы` as `Группы`, `Тип_концерта`.`имя` as `Тип`, `Условия_выступления`.`имя` as `Условия выступления`, `Концерты`.`комментарий` as `Комментарий`, `Концерты`.`расходы` as `Расходы`, `Статус_переговоров`.`имя`as `Статус переговоров`, `Концерты`.`афиша` as `Афиша` FROM `Концерты`, `Тип_концерта`,`Условия_выступления`, `Статус_переговоров` WHERE `Концерты`.`тип_концерта`=`Тип_концерта`.`id` AND `Концерты`.`условия`=`Условия_выступления`.`id` AND `Концерты`.`статус_переговоров`=`Статус_переговоров`.`id` ORDER BY `Дата` ASC");
+$sql7 = mysqli_query($con, "SELECT `Концерты`.`id` as `id`, `Концерты`.`дата_время_начала` as `Дата`,  `название` as `Название`, `группы` as `Группы`, `Тип_концерта`.`имя` as `Тип`, `Условия_выступления`.`имя` as `Условия выступления`, `Концерты`.`комментарий` as `Комментарий`, `Концерты`.`расходы` as `Расходы`, `Статус_переговоров`.`имя`as `Статус переговоров`, `Концерты`.`афиша` as `Афиша` FROM `Концерты`, `Тип_концерта`,`Условия_выступления`, `Статус_переговоров` WHERE `Концерты`.`тип_концерта`=`Тип_концерта`.`id` AND `Концерты`.`условия`=`Условия_выступления`.`id` AND `Концерты`.`статус_переговоров`=`Статус_переговоров`.`id` ORDER BY `Дата` DESC");
 
 $sql8 = mysqli_query($con, "SELECT `Представитель`.`имя` as `Имя`, `Представитель`.`телефон` as `Телефон`, `Город`.`имя` AS `Город` FROM `Представитель`, `Город` WHERE `Город`.`id` = `Представитель`.`id_города` ORDER BY `Представитель`.`имя` ASC");
 
@@ -52,6 +51,48 @@ $director_array = array();
 $genre_array = array();
 $archive_array = array();
 $posts_array = array();
+
+if (isset($_GET['page'])){
+  $page = $_GET['page'];
+}else{
+  $page = 1;
+}
+$limit = 5;
+$offset = !empty($page)?(($page-1)*$limit):0;
+ //получаем количество записей
+$count_new_events = mysqli_query($con, "SELECT COUNT(id) as `Количество` from `Концерты` WHERE date(`дата_время_начала`) >= CURRENT_DATE");
+$count_archive_events = mysqli_query($con, "SELECT COUNT(id) as `Количество` from `Концерты` WHERE date(`дата_время_начала`) < CURRENT_DATE");
+
+foreach($count_new_events as $resultNum){
+  $rowNewCount = $resultNum['Количество'];
+}
+foreach($count_archive_events as $resultNum){
+  $rowArchiveCount = $resultNum['Количество'];
+}
+
+$limit_page_new = ceil($rowNewCount / $limit);
+$limit_page_old = ceil($rowArchiveCount / $limit);
+
+//инициализируем класс pagination
+// $pagNewConfig = array(
+//      'baseURL'=>'https://rockstar57.ru/events.php',
+//      'totalRows'=>$rowNewCount,
+//      'perPage'=>$limit
+//  );
+// $pagArchiveConfig = array(
+//      'baseURL'=>'https://rockstar57.ru/events.php',
+//      'totalRows'=>$rowArchiveCount,
+//      'perPage'=>$limit
+//  );
+
+// $paginationNew =  new Pagination($pagNewConfig);
+// $paginationOld =  new Pagination($pagArchiveConfig);
+
+$new_concerts = mysqli_query($con, "SELECT id, DATE_FORMAT(`дата_время_начала`, '%d.%m.%Y %H:%i') as `Дата`, date(`дата_время_начала`) as `Дата2`, `название` as `Название`, `группы` as `Группы`, `афиша` as `Афиша` from `Концерты` WHERE date(`дата_время_начала`) < CURRENT_DATE ORDER BY `Дата2` DESC LIMIT $offset,$limit");
+
+$archive_concerts = mysqli_query($con, "SELECT id, DATE_FORMAT(`дата_время_начала`, '%d.%m.%Y %H:%i') as `Дата`, date(`дата_время_начала`) as `Дата2`, `название` as `Название`, `группы` as `Группы`, `афиша` as `Афиша` from `Концерты` WHERE date(`дата_время_начала`) < CURRENT_DATE ORDER BY `Дата2` DESC LIMIT $offset,$limit");
+
+
 
 while ($rows = mysqli_fetch_assoc($sql)) {
   $res_array[][] = $rows;

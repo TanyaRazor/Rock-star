@@ -232,22 +232,31 @@ if (! $_SESSION['admin']){
           </div>
 
           <ul class=\"nav nav-tabs\" role=\"tablist\" id=\"my-admin-tab\">
-          <li class=\"nav-item\" role=\"presentation\">
-            <button class=\"nav-link admin_tab active\" id=\"agents_tab\" data-bs-toggle=\"tab\" data-bs-target=\"#agents\" type=\"button\" role=\"tab\" aria-controls=\"agents\" aria-selected=\"true\">Представители</button>
-          </li>
-          <li class=\"nav-item\" role=\"presentation\">
-            <button class=\"nav-link admin_tab\" id=\"groups_tab\" data-bs-toggle=\"tab\" data-bs-target=\"#groups\" type=\"button\" role=\"tab\" aria-controls=\"groups\" aria-selected=\"true\">Группы</button>
-          </li>
-          <li class=\"nav-item\" role=\"presentation\">
-            <button class=\"nav-link admin_tab\" id=\"events_tab\" data-bs-toggle=\"tab\" data-bs-target=\"#events\" type=\"button\" role=\"tab\" aria-controls=\"events\" aria-selected=\"true\">Мероприятия</button>
-          </li>
-          <li class=\"nav-item\" role=\"presentation\">
-            <button class=\"nav-link admin_tab\" id=\"posts_tab\" data-bs-toggle=\"tab\" data-bs-target=\"#posts\" type=\"button\" role=\"tab\" aria-controls=\"posts\" aria-selected=\"true\">Посты</button>
-          </li>
+
+            <li class=\"nav-item\" role=\"presentation\">
+              <button class=\"nav-link admin_tab active\" id=\"all_agents_tab\" data-bs-toggle=\"tab\" data-bs-target=\"#all_agents\" type=\"button\" role=\"tab\" aria-controls=\"all_agents\" onClick='location.href=\"/admin.php#all_agents\"'>Представители</button>
+            </li>
+
+            <li class=\"nav-item\" role=\"presentation\">
+              <button class=\"nav-link admin_tab\" id=\"groups_tab\" data-bs-toggle=\"tab\" data-bs-target=\"#groups\" type=\"button\" role=\"tab\" aria-controls=\"groups\" onClick='location.href=\"/admin.php#groups\"'>Группы</button>
+            </li>
+
+            <li class=\"nav-item\" role=\"presentation\">
+              <button class=\"nav-link admin_tab\" id=\"events_tab\" data-bs-toggle=\"tab\" data-bs-target=\"#events\" type=\"button\" role=\"tab\" aria-controls=\"events\" onClick='location.href=\"/admin.php#events\"'>Мероприятия</button>
+            </li>
+            <li class=\"nav-item\" role=\"presentation\">
+              <button class=\"nav-link admin_tab\" id=\"posts_tab\" data-bs-toggle=\"tab\" data-bs-target=\"#posts\" type=\"button\" role=\"tab\" aria-controls=\"posts\" onClick='location.href=\"/admin.php#posts\"'>Посты</button>
+            </li>
           </ul>
 
           <div class=\"tab-content\">
+            <div class=\"tab-pane fade admin_contents show active\" id=\"all_agents\">
+              Представители
+            </div>
 
+            <div class=\"tab-pane fade admin_contents\" id=\"groups\">
+              Группы
+            </div>
 
             <div class=\"tab-pane fade admin_contents\" id=\"events\">
               <fieldset class=\"fieldset table-responsive\">
@@ -320,6 +329,9 @@ if (! $_SESSION['admin']){
         </table>
       </fieldset>
       </div>
+      <?php echo"<div class=\"tab-pane fade admin_contents\" id=\"posts\">"; ?>
+            Посты
+          </div>
       </div>
       </div>
     </div>

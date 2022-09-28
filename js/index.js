@@ -54,6 +54,25 @@ $(function() {
         $('#modal_' + id).fadeIn();
     });
 
+    // $(".pagination").on("click", function() {
+    //     let modal_id = $(this).parent().attr("id");
+    //     const someTabTriggerEl = document.querySelector('button[data-bs-target="#"' + modal_id + ']');
+    //     console.log(someTabTriggerEl);
+    //     //const tab = new bootstrap.Tab(someTabTriggerEl);
+
+    //     //tab.show();
+    //     // $(".nav-link[data-bs-target='#' + modal_id]").addClass("active");
+    // });
+
+
+    $(".nave-link").click(function(e) {
+        $(".nav-link").removeClass("active");
+        $(this).addClass("active");
+        let id = $(this).attr("data-bs-target");
+        $(".tab-pane").removeClass("active show");
+        $(id).addClass('active show');
+    });
+
 
     $(document).on("input", "textarea", function() {
         $(this).outerHeight(38).outerHeight(this.scrollHeight);
@@ -116,6 +135,25 @@ $(function() {
     // span.onclick = function() {
     //     modal.style.display = "none";
     // }
+});
+
+$(document).ready(function() {
+    let hash = window.location.hash;
+    switch (window.location.hash) {
+        case '':
+            $('#all_agents_tab, #new-events_tab').addClass('active');
+            $('#all_agents, #new-events').addClass('active show');
+            break;
+        case hash:
+            $('.admin_tab').removeClass('active');
+            $('.events_tab').removeClass('active');
+            $(hash + '_tab').addClass('active');
+            $('.admin_contents').removeClass('active show');
+            $('.events_contents').removeClass('active show');
+            $(hash).addClass('active show');
+            break;
+
+    }
 });
 
 function toggleButton() {

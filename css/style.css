@@ -623,6 +623,7 @@ select {
 
 .admin_contents {
     width: -webkit-fill-available;
+    color: #333333;
 }
 
 #costs {
@@ -875,6 +876,10 @@ select {
 
 .btn_refresh_concerts {
     margin-top: 20px;
+}
+
+.pagination {
+    justify-content: center;
 }
 
 
