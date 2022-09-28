@@ -48,7 +48,7 @@
 
 
 
-          <div class="tab-pane fade events_content show active" id="new-events">
+          <div class="tab-pane fade events_contents show active" id="new-events">
 
             <?php include 'request.php';
             foreach ($res_array as $res) {
@@ -133,7 +133,7 @@
         }?>
         </div>
         <?php if ($archive_concerts->num_rows > 0) {
-                echo "<div class=\"tab-pane fade events_content\" id=\"old-events\">";
+                echo "<div class=\"tab-pane fade events_contents\" id=\"old-events\">";
                 foreach ($archive_array as $res) {
                   foreach ($res as $result) {
                     $id = $result['id'];
