@@ -181,7 +181,7 @@ switch ($name){
             $groups = explode (",", $group_edit);
             foreach ($group_array as $gr) {
               foreach ($gr as $group) {
-                $group_name = $group['name'];
+                $group_name = $group['Имя'];
               }
 
               echo "<option value=\"$group_name\"";
