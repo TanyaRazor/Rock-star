@@ -138,7 +138,7 @@ if (! $_SESSION['admin']){
                     <select class=\"chosen-select\" data-placeholder=\"Выберите группы...\" name=\"groups[]\" id=\"groups_select\" multiple onchange=\"toggleButton()\">";
                     foreach ($group_array as $gr) {
                       foreach ($gr as $group) {
-                        $group_name = $group['name'];
+                        $group_name = $group['Имя'];
                       }
                       echo "<option value=\"$group_name\">$group_name</option>";
                     }
@@ -202,7 +202,7 @@ if (! $_SESSION['admin']){
                 </div>
                 <div class=\"input\">
                   <label for=\"#image\" class=\"input__label flex\">Афиша
-                    <input type=\"file\" name=\"image\" id=\"image\" required>
+                    <input type=\"file\" name=\"image\" id=\"image\">
                   </label>
                 </div>
 
@@ -251,14 +251,90 @@ if (! $_SESSION['admin']){
 
           <div class=\"tab-content\">
             <div class=\"tab-pane fade admin_contents show active\" id=\"all_agents\">
-              Представители
+              <fieldset class=\"fieldset table-responsive\">
+                <table class=\"table\">
+                  <tr>
+                    <th>Имя</th>
+                    <th>Телефон</th>
+                    <th>Город</th>
+                  </tr>";
+
+                  foreach ($director_array as $d) {
+                    foreach ($d as $agents) {
+                        $id = $agents['id'];
+                        $name = $agents['Имя'];
+                        $phone = $agents['Телефон'];
+                        $city = $agents['Город'];
+                    }
+            echo "<tr>
+                    <td>$name</td>
+                    <td>$phone</td>
+                    <td>$city</td>
+                    <td class=\"btn_edit\">
+                      <a href=\"/edit.php/?name=agents&edit_id=$id\">
+                        <svg class=\"edit_icon\" width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">
+<path d=\"M12.8536 0.146447C12.6583 -0.0488155 12.3417 -0.0488155 12.1465 0.146447L10.5 1.7929L14.2071 5.50001L15.8536 3.85355C16.0488 3.65829 16.0488 3.34171 15.8536 3.14645L12.8536 0.146447Z\" fill=\"black\"/>
+<path d=\"M13.5 6.20711L9.7929 2.50001L3.29291 9H3.5C3.77614 9 4 9.22386 4 9.5V10H4.5C4.77614 10 5 10.2239 5 10.5V11H5.5C5.77614 11 6 11.2239 6 11.5V12H6.5C6.77614 12 7 12.2239 7 12.5V12.7071L13.5 6.20711Z\" fill=\"black\"/>
+<path d=\"M6.03166 13.6755C6.01119 13.6209 6 13.5617 6 13.5V13H5.5C5.22386 13 5 12.7761 5 12.5V12H4.5C4.22386 12 4 11.7761 4 11.5V11H3.5C3.22386 11 3 10.7761 3 10.5V10H2.5C2.43827 10 2.37915 9.98881 2.32455 9.96835L2.14646 10.1464C2.09858 10.1943 2.06092 10.2514 2.03578 10.3143L0.0357762 15.3143C-0.0385071 15.5 0.00502989 15.7121 0.146461 15.8536C0.287892 15.995 0.500001 16.0385 0.68571 15.9642L5.68571 13.9642C5.74858 13.9391 5.80569 13.9014 5.85357 13.8536L6.03166 13.6755Z\" fill=\"black\"/>
+</svg></a>
+                    </td>
+                    <td class=\"btn_delete\">
+                      <a href=\"/request.php?name=agents&delete_id=$id\">
+                        <svg class=\"delete_icon\" width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">
+<path d=\"M2.5 1C1.94772 1 1.5 1.44772 1.5 2V3C1.5 3.55228 1.94772 4 2.5 4H3V13C3 14.1046 3.89543 15 5 15H11C12.1046 15 13 14.1046 13 13V4H13.5C14.0523 4 14.5 3.55228 14.5 3V2C14.5 1.44772 14.0523 1 13.5 1H10C10 0.447715 9.55229 0 9 0H7C6.44772 0 6 0.447715 6 1H2.5ZM5.5 5C5.77614 5 6 5.22386 6 5.5V12.5C6 12.7761 5.77614 13 5.5 13C5.22386 13 5 12.7761 5 12.5L5 5.5C5 5.22386 5.22386 5 5.5 5ZM8 5C8.27614 5 8.5 5.22386 8.5 5.5V12.5C8.5 12.7761 8.27614 13 8 13C7.72386 13 7.5 12.7761 7.5 12.5V5.5C7.5 5.22386 7.72386 5 8 5ZM11 5.5V12.5C11 12.7761 10.7761 13 10.5 13C10.2239 13 10 12.7761 10 12.5V5.5C10 5.22386 10.2239 5 10.5 5C10.7761 5 11 5.22386 11 5.5Z\" fill=\"black\"/>
+</svg></a>
+                    </td>
+                  </tr>";
+            }
+                ?>
+                </tbody>
+              </table>
+            </fieldset>
+            </div>
+<?php
+        echo"<div class=\"tab-pane fade admin_contents\" id=\"groups\">
+              <fieldset class=\"fieldset table-responsive\">
+                <table class=\"table\">
+                  <tr>
+                    <th>Имя</th>
+                    <th>Представитель</th>
+                    <th>Жанр</th>
+                  </tr>";
+
+                  foreach ($group_array as $g) {
+                    foreach ($g as $groups) {
+                        $id = $groups['id'];
+                        $name = $groups['Имя'];
+                        $agent = $groups['Представитель'];
+                        $genre = $groups['Жанр'];
+                    }
+             echo "<tr>
+                    <td>$name</td>
+                    <td>$agent</td>
+                    <td>$genre</td>
+                    <td class=\"btn_edit\">
+                      <a href=\"/edit.php/?name=groups&edit_id=$id\">
+                        <svg class=\"edit_icon\" width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">
+<path d=\"M12.8536 0.146447C12.6583 -0.0488155 12.3417 -0.0488155 12.1465 0.146447L10.5 1.7929L14.2071 5.50001L15.8536 3.85355C16.0488 3.65829 16.0488 3.34171 15.8536 3.14645L12.8536 0.146447Z\" fill=\"black\"/>
+<path d=\"M13.5 6.20711L9.7929 2.50001L3.29291 9H3.5C3.77614 9 4 9.22386 4 9.5V10H4.5C4.77614 10 5 10.2239 5 10.5V11H5.5C5.77614 11 6 11.2239 6 11.5V12H6.5C6.77614 12 7 12.2239 7 12.5V12.7071L13.5 6.20711Z\" fill=\"black\"/>
+<path d=\"M6.03166 13.6755C6.01119 13.6209 6 13.5617 6 13.5V13H5.5C5.22386 13 5 12.7761 5 12.5V12H4.5C4.22386 12 4 11.7761 4 11.5V11H3.5C3.22386 11 3 10.7761 3 10.5V10H2.5C2.43827 10 2.37915 9.98881 2.32455 9.96835L2.14646 10.1464C2.09858 10.1943 2.06092 10.2514 2.03578 10.3143L0.0357762 15.3143C-0.0385071 15.5 0.00502989 15.7121 0.146461 15.8536C0.287892 15.995 0.500001 16.0385 0.68571 15.9642L5.68571 13.9642C5.74858 13.9391 5.80569 13.9014 5.85357 13.8536L6.03166 13.6755Z\" fill=\"black\"/>
+</svg></a>
+                </td>
+                <td class=\"btn_delete\">
+                  <a href=\"/request.php?name=groups&delete_id=$id\">
+                    <svg class=\"delete_icon\" width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">
+<path d=\"M2.5 1C1.94772 1 1.5 1.44772 1.5 2V3C1.5 3.55228 1.94772 4 2.5 4H3V13C3 14.1046 3.89543 15 5 15H11C12.1046 15 13 14.1046 13 13V4H13.5C14.0523 4 14.5 3.55228 14.5 3V2C14.5 1.44772 14.0523 1 13.5 1H10C10 0.447715 9.55229 0 9 0H7C6.44772 0 6 0.447715 6 1H2.5ZM5.5 5C5.77614 5 6 5.22386 6 5.5V12.5C6 12.7761 5.77614 13 5.5 13C5.22386 13 5 12.7761 5 12.5L5 5.5C5 5.22386 5.22386 5 5.5 5ZM8 5C8.27614 5 8.5 5.22386 8.5 5.5V12.5C8.5 12.7761 8.27614 13 8 13C7.72386 13 7.5 12.7761 7.5 12.5V5.5C7.5 5.22386 7.72386 5 8 5ZM11 5.5V12.5C11 12.7761 10.7761 13 10.5 13C10.2239 13 10 12.7761 10 12.5V5.5C10 5.22386 10.2239 5 10.5 5C10.7761 5 11 5.22386 11 5.5Z\" fill=\"black\"/>
+</svg></a>
+                  </td>
+                </tr>";
+              }
+                  ?>
+                  </tbody>
+                </table>
+              </fieldset>
             </div>
 
-            <div class=\"tab-pane fade admin_contents\" id=\"groups\">
-              Группы
-            </div>
-
-            <div class=\"tab-pane fade admin_contents\" id=\"events\">
+           <?php echo "<div class=\"tab-pane fade admin_contents\" id=\"events\">
               <fieldset class=\"fieldset table-responsive\">
                 <table class=\"table\">
                 <tr>
@@ -308,7 +384,7 @@ if (! $_SESSION['admin']){
                           echo"</td>
                         <td class=\"admin_poster\">$name</td>
                           <td class=\"btn_edit\">
-                            <a href=\"/edit.php/?edit_id=$id\">
+                            <a href=\"/edit.php/?name=events&edit_id=$id\">
                             <svg class=\"edit_icon\" width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">
 <path d=\"M12.8536 0.146447C12.6583 -0.0488155 12.3417 -0.0488155 12.1465 0.146447L10.5 1.7929L14.2071 5.50001L15.8536 3.85355C16.0488 3.65829 16.0488 3.34171 15.8536 3.14645L12.8536 0.146447Z\" fill=\"black\"/>
 <path d=\"M13.5 6.20711L9.7929 2.50001L3.29291 9H3.5C3.77614 9 4 9.22386 4 9.5V10H4.5C4.77614 10 5 10.2239 5 10.5V11H5.5C5.77614 11 6 11.2239 6 11.5V12H6.5C6.77614 12 7 12.2239 7 12.5V12.7071L13.5 6.20711Z\" fill=\"black\"/>
@@ -316,7 +392,7 @@ if (! $_SESSION['admin']){
 </svg></a>
                           </td>
                           <td class=\"btn_delete\">
-                            <a href=\"/request.php?delete_id=$id\">
+                            <a href=\"/request.php?name=events&delete_id=$id\">
                             <svg class=\"delete_icon\" width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">
 <path d=\"M2.5 1C1.94772 1 1.5 1.44772 1.5 2V3C1.5 3.55228 1.94772 4 2.5 4H3V13C3 14.1046 3.89543 15 5 15H11C12.1046 15 13 14.1046 13 13V4H13.5C14.0523 4 14.5 3.55228 14.5 3V2C14.5 1.44772 14.0523 1 13.5 1H10C10 0.447715 9.55229 0 9 0H7C6.44772 0 6 0.447715 6 1H2.5ZM5.5 5C5.77614 5 6 5.22386 6 5.5V12.5C6 12.7761 5.77614 13 5.5 13C5.22386 13 5 12.7761 5 12.5L5 5.5C5 5.22386 5.22386 5 5.5 5ZM8 5C8.27614 5 8.5 5.22386 8.5 5.5V12.5C8.5 12.7761 8.27614 13 8 13C7.72386 13 7.5 12.7761 7.5 12.5V5.5C7.5 5.22386 7.72386 5 8 5ZM11 5.5V12.5C11 12.7761 10.7761 13 10.5 13C10.2239 13 10 12.7761 10 12.5V5.5C10 5.22386 10.2239 5 10.5 5C10.7761 5 11 5.22386 11 5.5Z\" fill=\"black\"/>
 </svg></a>
@@ -329,8 +405,44 @@ if (! $_SESSION['admin']){
         </table>
       </fieldset>
       </div>
-      <?php echo"<div class=\"tab-pane fade admin_contents\" id=\"posts\">"; ?>
-            Посты
+      <?php echo"<div class=\"tab-pane fade admin_contents\" id=\"posts\">
+      <fieldset class=\"fieldset table-responsive\">
+                <table class=\"table\">
+                  <tr>
+                    <th>Имя</th>
+                    <th>Представитель</th>
+                    <th>Жанр</th>
+                  </tr>";
+
+                  foreach ($posts_array as $p) {
+                    foreach ($p as $posts) {
+                        $id = $posts['id'];
+                        $name = $posts['Концерт'];
+                        $post = $posts['Описание'];
+                    }
+             echo "<tr>
+                    <td>$name</td>
+                    <td>$post</td>
+                    <td class=\"btn_edit\">
+                      <a href=\"/edit.php/?name=posts&edit_id=$id\">
+                        <svg class=\"edit_icon\" width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">
+<path d=\"M12.8536 0.146447C12.6583 -0.0488155 12.3417 -0.0488155 12.1465 0.146447L10.5 1.7929L14.2071 5.50001L15.8536 3.85355C16.0488 3.65829 16.0488 3.34171 15.8536 3.14645L12.8536 0.146447Z\" fill=\"black\"/>
+<path d=\"M13.5 6.20711L9.7929 2.50001L3.29291 9H3.5C3.77614 9 4 9.22386 4 9.5V10H4.5C4.77614 10 5 10.2239 5 10.5V11H5.5C5.77614 11 6 11.2239 6 11.5V12H6.5C6.77614 12 7 12.2239 7 12.5V12.7071L13.5 6.20711Z\" fill=\"black\"/>
+<path d=\"M6.03166 13.6755C6.01119 13.6209 6 13.5617 6 13.5V13H5.5C5.22386 13 5 12.7761 5 12.5V12H4.5C4.22386 12 4 11.7761 4 11.5V11H3.5C3.22386 11 3 10.7761 3 10.5V10H2.5C2.43827 10 2.37915 9.98881 2.32455 9.96835L2.14646 10.1464C2.09858 10.1943 2.06092 10.2514 2.03578 10.3143L0.0357762 15.3143C-0.0385071 15.5 0.00502989 15.7121 0.146461 15.8536C0.287892 15.995 0.500001 16.0385 0.68571 15.9642L5.68571 13.9642C5.74858 13.9391 5.80569 13.9014 5.85357 13.8536L6.03166 13.6755Z\" fill=\"black\"/>
+</svg></a>
+                </td>
+                <td class=\"btn_delete\">
+                  <a href=\"/request.php?name=posts&delete_id=$id\">
+                    <svg class=\"delete_icon\" width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">
+<path d=\"M2.5 1C1.94772 1 1.5 1.44772 1.5 2V3C1.5 3.55228 1.94772 4 2.5 4H3V13C3 14.1046 3.89543 15 5 15H11C12.1046 15 13 14.1046 13 13V4H13.5C14.0523 4 14.5 3.55228 14.5 3V2C14.5 1.44772 14.0523 1 13.5 1H10C10 0.447715 9.55229 0 9 0H7C6.44772 0 6 0.447715 6 1H2.5ZM5.5 5C5.77614 5 6 5.22386 6 5.5V12.5C6 12.7761 5.77614 13 5.5 13C5.22386 13 5 12.7761 5 12.5L5 5.5C5 5.22386 5.22386 5 5.5 5ZM8 5C8.27614 5 8.5 5.22386 8.5 5.5V12.5C8.5 12.7761 8.27614 13 8 13C7.72386 13 7.5 12.7761 7.5 12.5V5.5C7.5 5.22386 7.72386 5 8 5ZM11 5.5V12.5C11 12.7761 10.7761 13 10.5 13C10.2239 13 10 12.7761 10 12.5V5.5C10 5.22386 10.2239 5 10.5 5C10.7761 5 11 5.22386 11 5.5Z\" fill=\"black\"/>
+</svg></a>
+                  </td>
+                </tr>";
+              }
+                  ?>
+                  </tbody>
+                </table>
+              </fieldset>
           </div>
       </div>
       </div>

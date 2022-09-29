@@ -12,6 +12,7 @@ $(function() {
 
     $(window).on('resize', function() { $('.section-header__burger').hide(); });
 
+    autosize(document.querySelectorAll('textarea'));
     // theRotator();
     // $('select').selectize({
     //     sortField: 'text'
