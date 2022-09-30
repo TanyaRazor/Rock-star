@@ -89,7 +89,7 @@ $limit_page_old = ceil($rowArchiveCount / $limit);
 // $paginationNew =  new Pagination($pagNewConfig);
 // $paginationOld =  new Pagination($pagArchiveConfig);
 
-$new_concerts = mysqli_query($con, "SELECT id, DATE_FORMAT(`дата_время_начала`, '%d.%m.%Y %H:%i') as `Дата`, date(`дата_время_начала`) as `Дата2`, `название` as `Название`, `группы` as `Группы`, `афиша` as `Афиша` from `Концерты` WHERE date(`дата_время_начала`) >= CURRENT_DATE ORDER BY `Дата2` DESC LIMIT $offset,$limit");
+$new_concerts = mysqli_query($con, "SELECT id, DATE_FORMAT(`дата_время_начала`, '%d.%m.%Y %H:%i') as `Дата`, date(`дата_время_начала`) as `Дата2`, `название` as `Название`, `группы` as `Группы`, `афиша` as `Афиша` from `Концерты` WHERE date(`дата_время_начала`) >= CURRENT_DATE ORDER BY `Дата2` ASC LIMIT $offset,$limit");
 
 $archive_concerts = mysqli_query($con, "SELECT id, DATE_FORMAT(`дата_время_начала`, '%d.%m.%Y %H:%i') as `Дата`, date(`дата_время_начала`) as `Дата2`, `название` as `Название`, `группы` as `Группы`, `афиша` as `Афиша` from `Концерты` WHERE date(`дата_время_начала`) < CURRENT_DATE ORDER BY `Дата2` DESC LIMIT $offset,$limit");
 
