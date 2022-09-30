@@ -13,6 +13,11 @@ $(function() {
     $(window).on('resize', function() { $('.section-header__burger').hide(); });
 
     autosize(document.querySelectorAll('textarea'));
+    $(document).on('focus', selector, function() {
+
+        document.querySelectorAll("textarea").scrollIntoView();
+
+    });
     // theRotator();
     // $('select').selectize({
     //     sortField: 'text'
