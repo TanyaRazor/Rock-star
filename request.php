@@ -335,9 +335,11 @@ if (isset($_POST['add_concert'])) {
 
           // Сократим .jpeg до .jpg
           $format = str_replace('jpeg', 'jpg', $extension);
+          $name_rep = str_replace(' ', '_', $name);
 
           $date_poster = date('Y-m-d',strtotime($date));
-          $name_poster = $date_poster . "_" . $name . $format;
+          $name_poster = $date_poster . "_" . $name_rep
+          $name_rep = str_replace(' ', '_', $name); . $format;
 
         // Переместим картинку с новым именем и расширением в папку
         if (!move_uploaded_file($fileTmpName, __DIR__ . "/img/афиши/" . $name_poster)) {
@@ -451,8 +453,9 @@ if (isset($_POST['btn_edit'])) {
           if (filesize($fileTmpNameEdit) > $limitBytes) die('Размер изображения не должен превышать 5 Мбайт.');
           $extension = image_type_to_extension($image[2]);
           $format = str_replace('jpeg', 'jpg', $extension);
+          $name_rep = str_replace(' ', '_', $name);
           $date_poster = date('Y-m-d',strtotime($date));
-          $poster_edit = $date_poster . "_" . $name . $format;
+          $poster_edit = $date_poster . "_" . $name_rep . $format;
           if (!move_uploaded_file($fileTmpNameEdit, __DIR__ . "/img/афиши/" . $poster_edit)) {
             die('При записи изображения на диск произошла ошибка.');
           }

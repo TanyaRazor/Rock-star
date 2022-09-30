@@ -14,7 +14,7 @@
         <!-- The Close Button -->
         <!-- <span class="close">&times;</span> -->
         <!-- Modal Content (The Image) -->
-        <img class="modal-content_img" id="img01" src="" alt="">
+        <img class="modal-content_img" id="img01" src="/img/Лого_Орел.png" alt="">
         <!-- Modal Caption (Image Text) -->
         <!-- <div id="caption"></div> -->
         </div>
