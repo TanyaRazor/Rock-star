@@ -14,7 +14,7 @@
         <!-- The Close Button -->
         <!-- <span class="close">&times;</span> -->
         <!-- Modal Content (The Image) -->
-        <img class="modal-content_img" id="img01">
+        <img class="modal-content_img" id="img01" src="" alt="">
         <!-- Modal Caption (Image Text) -->
         <!-- <div id="caption"></div> -->
         </div>
@@ -46,15 +46,16 @@
 
             foreach ($res_array as $res) {
               foreach ($res as $result) {
+                $id = $result['id'];
                 $name = $result['Название'];
                 $poster = $result['Афиша'];
               }
 
               $src = "$dir/$poster";
               if ($poster && file_exists($src)) {
-                echo "<div class=\"section-index__afisha flex\"><img id=\"afisha\" class=\"section-index__afisha-img\" src=\"$src\" alt=\"$name\"/></div>";
+                echo "<div class=\"section-index__afisha flex\"><img id=\"afisha$id\" class=\"section-index__afisha-img\" src=\"$src\" alt=\"$name\"/></div>";
               } else {
-                echo "<div class=\"section-index__afisha flex\"><img id=\"afisha\" class=\"section-index__afisha-img\" src=\"$dir/орел.jpg\" alt=\"Rock-staR Орел\"/></div>";
+                echo "<div class=\"section-index__afisha flex\"><img id=\"afisha$id\" class=\"section-index__afisha-img\" src=\"$dir/орел.jpg\" alt=\"Rock-staR Орел\"/></div>";
               }
             }?>
 

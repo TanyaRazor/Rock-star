@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: http://rockstar57.ru/sitemap.xml
