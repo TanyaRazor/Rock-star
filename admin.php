@@ -104,8 +104,8 @@ if (! $_SESSION['admin']){
               echo "<option value=\"$agent\" class=\"section-admin__select-option\">$agent</option>";
             }
             echo"</select>
-            <select name=\"genres\" id=\"genres\" class=\"section-admin__genre_name\">
-              <option value=\"noname\" selected>Не выбрано</option>";
+            <select name=\"genres\" id=\"genres\" class=\"section-admin__genre_name\">";
+              // <option value=\"noname\" selected>Не выбрано</option>";
             foreach ($genre_array as $gen) {
               foreach ($gen as $genres) {
                 $genres = $genres['имя'];

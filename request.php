@@ -195,12 +195,12 @@ if (isset($_POST['btn_groups'])) {
     $agent_id = $a_id['id'];
   }
 
-  if ($_POST['genres'] == "noname"){
-    $genre_id = '0';
-  }else{
+  // if ($_POST['genres'] == "noname"){
+  //   $genre_id = '0';
+  // }else{
     $genre_name = $con->real_escape_string($_POST['genres']);
     $genre_id = mysqli_query($con, "SELECT `id` FROM `Жанр_группы` WHERE `имя`=\"$genre_name\"");
-  }
+  // }
 
   foreach ($genre_id as $g_id){
     $genre_id = $g_id['id'];
