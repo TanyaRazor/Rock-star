@@ -47,90 +47,87 @@
         <div class="tab-content">
 
 
-
-          <div class="tab-pane fade events_contents show active" id="new-events">
-
             <?php include 'request.php';
-            foreach ($res_array as $res) {
-              foreach ($res as $result) {
-                $id = $result['id'];
-                $data = $result['Дата и время'];
-                $name = $result['Название'];
-                $poster = $result['Афиша'];
-              }
+              if ($new_concerts->num_rows > 0) {
+          echo "<div class=\"tab-pane fade events_contents show active\" id=\"new-events\">";
+                foreach ($new_array as $res) {
+                  foreach ($res as $result) {
+                    $id = $result['id'];
+                    $data = $result['Дата'];
+                    $name = $result['Название'];
+                    $poster = $result['Афиша'];
+                  }
 
-              $sql_post = mysqli_query($con,"SELECT `текст` FROM `Посты` WHERE `id_концерта` = $id");
+                  $sql_post = mysqli_query($con,"SELECT `текст` FROM `Посты` WHERE `id_концерта` = $id");
 
-              $post = "";
-              if(mysqli_num_rows($sql_post) > 0){
-                foreach ($sql_post as $p){
-                  $post = $p['текст'];
-                }
-              }
-
-
-            if ($new_concerts->num_rows > 0) {
-          echo "<div id=\"new-post-$id\" class=\"section-events__post flex\">
-                  <div class=\"section-events__post-one\">
-                    <a href=\"javascript:void(0);\"><div class=\"section-events__post-header\">$name</div></a>
-                    <div class=\"section-events__post-date\">$data</div>
-                    <div class=\"section_events__post-descr\">$post</div>
-                  </div>
-                  <div class=\"section-events__post-two flex\">
-                    <div class=\"section-events__post-afisha\">";
-
-                    $src = "$dir/$poster";
-                    if ($poster && file_exists($src)) {
-                      echo "<img id=\"afisha\" class=\"section-events__post-img\" src=\"$src\" alt=\"$name\"/>";
-                    } else {
-                      echo "<img id=\"afisha\" class=\"section-events__post-img\" src=\"$dir/орел.jpg\" alt=\"Rock-staR Орел\"/>";
+                  $post = "";
+                  if(mysqli_num_rows($sql_post) > 0){
+                    foreach ($sql_post as $p){
+                      $post = $p['текст'];
                     }
+                  }
 
-                    echo "</div>
-                  </div>
-                </div>";
-            }
-          }
-          if ($limit_page_new > 1){
-            $hash_new = "#new-events";
-          echo "<ul class=\"pagination\">";
-            if ($page != 1){
-              $prev = $page - 1;
-              $class = "";
-            }else{
-              $prev = $page;
-              $class = " disabled";
-            }
-              echo "<li class=\"page-item$class\">
-              <a class=\"page-link\" href=\"?page=$prev$hash_new\" aria-label=\"Previous\">
-                <span aria-hidden=\"true\">&laquo;</span>
-              </a>
-            </li>";
 
-            for ($i = 1; $i <= $limit_page_new; $i++){
-              if ($page == $i){
-                $class = " active";
-              }else{
-                $class = "";
+              echo "<div id=\"new-post-$id\" class=\"section-events__post flex\">
+                      <div class=\"section-events__post-one\">
+                      <div class=\"section-events__post-header\">$name</div></a>
+                        <div class=\"section-events__post-date\">$data</div>
+                        <div class=\"section_events__post-descr\">$post</div>
+                      </div>
+                      <div class=\"section-events__post-two flex\">
+                        <div class=\"section-events__post-afisha\">";
+
+                        $src = "$dir/$poster";
+                        if ($poster && file_exists($src)) {
+                          echo "<img id=\"afisha\" class=\"section-events__post-img\" src=\"$src\" alt=\"$name\"/>";
+                        } else {
+                          echo "<img id=\"afisha\" class=\"section-events__post-img\" src=\"$dir/орел.jpg\" alt=\"Rock-staR Орел\"/>";
+                        }
+                  echo "</div>
+                      </div>
+                    </div>";
               }
-              echo "<li class=\"page-item$class\"><a class=\"page-link\" href=\"?page=$i$hash_new\">$i</a></li>";
-
             }
+            if ($limit_page_new > 1){
+              $hash_new = "#new-events";
+            echo "<ul class=\"pagination\">";
+              if ($page != 1){
+                $prev = $page - 1;
+                $class = "";
+              }else{
+                $prev = $page;
+                $class = " disabled";
+              }
+                echo "<li class=\"page-item$class\">
+                <a class=\"page-link\" href=\"?page=$prev$hash_new\" aria-label=\"Previous\">
+                  <span aria-hidden=\"true\">&laquo;</span>
+                </a>
+              </li>";
 
-            if ($page != $limit_page_new){
-              $next = $page + 1;
-              $class = "";
-            }else{
-              $next = $page;
-              $class = " disabled";
-            }
-            echo "<li class=\"page-item$class\">
-              <a class=\"page-link\" href=\"?page=$next$hash_new\" aria-label=\"Next\">
-                <span aria-hidden=\"true\">&raquo;</span>
-              </a>
-            </li>
-          </ul>";
-        }?>
+              for ($i = 1; $i <= $limit_page_new; $i++){
+                if ($page == $i){
+                  $class = " active";
+                }else{
+                  $class = "";
+                }
+                echo "<li class=\"page-item$class\"><a class=\"page-link\" href=\"?page=$i$hash_new\">$i</a></li>";
+
+              }
+
+              if ($page != $limit_page_new){
+                $next = $page + 1;
+                $class = "";
+              }else{
+                $next = $page;
+                $class = " disabled";
+              }
+              echo "<li class=\"page-item$class\">
+                <a class=\"page-link\" href=\"?page=$next$hash_new\" aria-label=\"Next\">
+                  <span aria-hidden=\"true\">&raquo;</span>
+                </a>
+              </li>
+            </ul>";
+          }?>
         </div>
         <?php if ($archive_concerts->num_rows > 0) {
                 echo "<div class=\"tab-pane fade events_contents\" id=\"old-events\">";

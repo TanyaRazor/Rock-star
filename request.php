@@ -49,6 +49,7 @@ $status_array = array();
 $concerts_array = array();
 $director_array = array();
 $genre_array = array();
+$new_array = array();
 $archive_array = array();
 $posts_array = array();
 
@@ -88,7 +89,7 @@ $limit_page_old = ceil($rowArchiveCount / $limit);
 // $paginationNew =  new Pagination($pagNewConfig);
 // $paginationOld =  new Pagination($pagArchiveConfig);
 
-$new_concerts = mysqli_query($con, "SELECT id, DATE_FORMAT(`дата_время_начала`, '%d.%m.%Y %H:%i') as `Дата`, date(`дата_время_начала`) as `Дата2`, `название` as `Название`, `группы` as `Группы`, `афиша` as `Афиша` from `Концерты` WHERE date(`дата_время_начала`) < CURRENT_DATE ORDER BY `Дата2` DESC LIMIT $offset,$limit");
+$new_concerts = mysqli_query($con, "SELECT id, DATE_FORMAT(`дата_время_начала`, '%d.%m.%Y %H:%i') as `Дата`, date(`дата_время_начала`) as `Дата2`, `название` as `Название`, `группы` as `Группы`, `афиша` as `Афиша` from `Концерты` WHERE date(`дата_время_начала`) >= CURRENT_DATE ORDER BY `Дата2` DESC LIMIT $offset,$limit");
 
 $archive_concerts = mysqli_query($con, "SELECT id, DATE_FORMAT(`дата_время_начала`, '%d.%m.%Y %H:%i') as `Дата`, date(`дата_время_начала`) as `Дата2`, `название` as `Название`, `группы` as `Группы`, `афиша` as `Афиша` from `Концерты` WHERE date(`дата_время_начала`) < CURRENT_DATE ORDER BY `Дата2` DESC LIMIT $offset,$limit");
 
@@ -135,6 +136,9 @@ while ($rows = mysqli_fetch_assoc($sql9)) {
 }
 while ($rows = mysqli_fetch_assoc($sql_post)) {
   $posts_array[][] = $rows;
+}
+while ($rows = mysqli_fetch_assoc($new_concerts)) {
+  $new_array[][] = $rows;
 }
 while ($rows = mysqli_fetch_assoc($archive_concerts)) {
   $archive_array[][] = $rows;
