@@ -1,3 +1,4 @@
 User-agent: *
-Host:rockstar57.ru
 Allow: /
+
+Host:rockstar57.ru
