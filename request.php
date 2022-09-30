@@ -338,8 +338,7 @@ if (isset($_POST['add_concert'])) {
           $name_rep = str_replace(' ', '_', $name);
 
           $date_poster = date('Y-m-d',strtotime($date));
-          $name_poster = $date_poster . "_" . $name_rep
-          $name_rep = str_replace(' ', '_', $name); . $format;
+          $name_poster = $date_poster . "_" . $name_rep . $format;
 
         // Переместим картинку с новым именем и расширением в папку
         if (!move_uploaded_file($fileTmpName, __DIR__ . "/img/афиши/" . $name_poster)) {
