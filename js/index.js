@@ -13,7 +13,7 @@ $(function() {
     $(window).on('resize', function() { $('.section-header__burger').hide(); });
 
     autosize(document.querySelectorAll('textarea'));
-    $(document).on('focus', selector, function() {
+    $(document).on('focus', 'textarea', function() {
 
         document.querySelectorAll("textarea").scrollIntoView();
 
