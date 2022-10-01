@@ -612,6 +612,8 @@ select {
 
 .form-textarea {
     width: 100%;
+    overflow-y: scroll;
+    max-height: 50vh;
     margin-right: 20px;
     margin-bottom: 20px;
 }
