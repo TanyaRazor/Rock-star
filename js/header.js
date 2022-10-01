@@ -20,8 +20,6 @@ $(document).ready(function() {
 
     $('title').text('Караоке бар Rock-staR - ' + title_type);
     var title = $('title').text();
-    console.log(main_id);
-    console.log(title);
 
     $('a#' + main_id + "_tab").addClass('active-item');
     $('a#' + main_id + "_burger").addClass('active-item');
