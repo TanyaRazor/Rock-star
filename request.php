@@ -486,7 +486,7 @@ if (isset($_GET['delete_id'])) {
     case "groups":
       $sql_delete = mysqli_query($con, "DELETE FROM `Группы` WHERE `ID` = '$id'");
       break;
-    case "concerts":
+    case "events":
       $sql = mysqli_query($con, "SELECT `афиша` FROM `Концерты` WHERE `ID` = '$id'");
       foreach ($sql as $file){
         $filepath = __DIR__ . "/img/афиши/" . $file['афиша'];
