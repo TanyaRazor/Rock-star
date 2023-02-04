@@ -17,7 +17,7 @@ $id = $_GET['edit_id'];
 $name = $_GET['name'];
 // echo $id;
 
-$edit_agents = mysqli_query($con, "SELECT `Представитель`.`id` as `id`, `Представитель`.`имя` as `Имя`, `Представитель`.`телефон` as `Телефон`, `Город`.`имя` as `Город` FROM `Представитель`, `Город` WHERE `Представитель`.`id_города`=`Город`.`id` AND `Представитель`.`id`=\"$id\"");
+$edit_agents = mysqli_query($con, "SELECT `id` as `id`, `имя` as `Имя`, `телефон` as `Телефон`, `город` as `Город` FROM `Представитель` WHERE `Представитель`.`id`=\"$id\"");
 
 $edit_groups = mysqli_query($con, "SELECT `Группы`.`id` as `id`, `Группы`.`name` as `Имя`, `Представитель`.`имя` as `Представитель`, `Жанр_группы`.`имя` as `Жанр` FROM `Представитель`, `Группы`, `Жанр_группы` WHERE `Группы`.`id_agent`=`Представитель`.`id` AND `Группы`.`id_жанра`=`Жанр_группы`.`id` AND `Группы`.`id`=\"$id\"");
 
@@ -58,25 +58,13 @@ switch ($name){
       echo"</label>
     </div>
     <div class=\"input_edit\">
-      <label class=\"input__label flex\" for=\"#cities_edit\">Город
-        <select name=\"cities_edit\" id=\"cities_edit\">";
+      <label class=\"input__label flex\" for=\"#cities_edit\">Город";
         foreach($edit_agents as $ea){
           $cities_edit = $ea['Город'];
+          echo "<input type=\"text\" name=\"cities_edit\" id=\"cities_edit\" value=\"$cities_edit\">";
         }
 
-        foreach ($city_array as $cities) {
-          foreach ($cities as $result_cities) {
-            $city = $result_cities['имя'];
-          }
-          echo "<option value=\"$city\"";
-          if ($city == $cities_edit){
-            echo "selected";
-          }
-          echo">$city</option>";
-        }
-
-  echo "</select>
-      </label>
+  echo "</label>
     </div>";
     break;
 

@@ -33,8 +33,8 @@ if (! $_SESSION['admin']){
     </form>
 
     <div class="btn_modal">
-      <button id = "btn_add_city" class="btn btn-outline-secondary" type="submit">Добавить город</button>
-      <button id = "btn_add_agent" class="btn btn-outline-secondary" type="submit">Добавить представителя</button>
+      <!-- <button id = "btn_add_city" class="btn btn-outline-secondary" type="submit">Добавить город</button> -->
+      <!-- <button id = "btn_add_agent" class="btn btn-outline-secondary" type="submit">Добавить представителя</button> -->
       <button id = "btn_add_group" class="btn btn-outline-secondary" type="submit">Добавить группу</button>
       <button id = "btn_add_event" class="btn btn-outline-secondary" type="submit">Добавить мероприятие</button>
       <button id = "btn_add_post" class="btn btn-outline-secondary" type="submit">Добавить пост</button>
@@ -46,48 +46,39 @@ if (! $_SESSION['admin']){
 
 
 
-    echo "<div id=\"modal_btn_add_city\" class=\"modal_post\">
-          <form action=\"request.php\" method=\"post\">
-            <fieldset class=\"fieldset modal_fieldset\">
-              <legend>Добавление города</legend>
-              <input class=\"input\" type=\"text\" name=\"city\" id=\"input_city\" placeholder=\"Введите город...\" onchange=\"toggleButton()\">
-              <select name=\"countries\" id=\"countries\" class=\"section-admin__select-country\" onchange=\"toggleButton()\">
-              <option value=\"NULL\" selected disabled hidden>Страна</option>";
-              // <option value=\"NULL\" selected hidden>Страна</option>";
-                foreach ($country_array as $countries) {
-                  foreach ($countries as $result_countries) {
-                    $country = $result_countries['имя'];
-                  }
-                  echo "<option value=\"$country\" class=\"section-admin__country-option\">$country</option>";
-                }
+    // echo "<div id=\"modal_btn_add_city\" class=\"modal_post\">
+    //       <form action=\"request.php\" method=\"post\">
+    //         <fieldset class=\"fieldset modal_fieldset\">
+    //           <legend>Добавление города</legend>
+    //           <input class=\"input\" type=\"text\" name=\"city\" id=\"input_city\" placeholder=\"Введите город...\" onchange=\"toggleButton()\">
+    //           <select name=\"countries\" id=\"countries\" class=\"section-admin__select-country\" onchange=\"toggleButton()\">
+    //           <option value=\"NULL\" selected disabled hidden>Страна</option>";
+    //           // <option value=\"NULL\" selected hidden>Страна</option>";
+    //             foreach ($country_array as $countries) {
+    //               foreach ($countries as $result_countries) {
+    //                 $country = $result_countries['имя'];
+    //               }
+    //               echo "<option value=\"$country\" class=\"section-admin__country-option\">$country</option>";
+    //             }
 
-              echo"</select>
-              <input class=\"btn_concert add_city\" type=\"submit\" name=\"btn_city\" value=\"Добавить\" disabled>
-              </fieldset>
-          </form>
-          </div>
+    //           echo"</select>
+    //           <input class=\"btn_concert add_city\" type=\"submit\" name=\"btn_city\" value=\"Добавить\" disabled>
+    //           </fieldset>
+    //       </form>
+    //       </div>
 
-          <div id=\"modal_btn_add_agent\" class=\"modal_post\">
+          echo
+          "<div id=\"modal_btn_add_agent\" class=\"modal_post\">
           <form action=\"request.php\" method=\"post\">
             <fieldset class=\"fieldset modal_fieldset\">
               <legend>Добавление представителя</legend>
               <input class=\"input\" type=\"text\" id=\"agent\" name=\"agent\" placeholder=\"Ф. И. О.\" onchange=\"toggleButton()\">
               <input class=\"input\" type=\"tel\" name=\"phone\" id=\"phone\" placeholder=\"+71234567890\">
-
-            <select name=\"cities\" id=\"cities\" class=\"section-admin__select-city\" onchange=\"toggleButton()\">
-              <option value=\"NULL\" selected disabled hidden>Город</option>";
-
-            foreach ($city_array as $cities) {
-              foreach ($cities as $result_cities) {
-                $city = $result_cities['имя'];
-              }
-              echo "<option value=\"$city\" class=\"section-admin__select-option\">$city</option>";
-            }
-            echo"</select>
+            <input name=\"cities\" id=\"cities\" class=\"section-admin__select-city\">
             <input class=\"btn_concert add_agent\" type=\"submit\" name=\"btn_agents\" value=\"Добавить\" disabled>
             </fieldset>
-            </div>
-        </form>
+          </form>
+          </div>
 
         <div id=\"modal_btn_add_group\" class=\"modal_post\">
         <form action=\"request.php\" method=\"post\">
@@ -103,7 +94,8 @@ if (! $_SESSION['admin']){
               }
               echo "<option value=\"$agent\" class=\"section-admin__select-option\">$agent</option>";
             }
-            echo"</select>
+            echo "</select>
+
             <select name=\"genres\" id=\"genres\" class=\"section-admin__genre_name\">";
               // <option value=\"noname\" selected>Не выбрано</option>";
             foreach ($genre_array as $gen) {
@@ -112,7 +104,11 @@ if (! $_SESSION['admin']){
               }
               echo "<option value=\"$genres\" class=\"section-admin__select-option\">$genres</option>";
             }
+
             echo"</select>
+            <div class=\"btn_modal\">
+              <button id = \"btn_add_agent\" class=\"btn btn-outline-secondary\" type=\"button\">Добавить представителя</button>
+            </div>
             <input class=\"btn_concert add_group\" type=\"submit\" name=\"btn_groups\" value=\"Добавить\" disabled>
             </fieldset>
           </div>

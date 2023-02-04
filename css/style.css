@@ -876,6 +876,11 @@ select {
     margin-bottom: 30px;
 }
 
+#modal_btn_add_agent {
+    position: absolute;
+    z-index: 100;
+}
+
 .btn_refresh_concerts {
     margin-top: 20px;
 }

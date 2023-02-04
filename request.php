@@ -13,9 +13,9 @@ $sql = mysqli_query($con, "SELECT id, DATE_FORMAT(`дата_время_нача�
 
 $sql_post = mysqli_query($con, "SELECT DATE(`Концерты`.`дата_время_начала`) as `Дата`, `Посты`.`id` as `id`, `Концерты`.`название` as `Концерт`, `Посты`.`текст` as `Описание` FROM `Концерты`, `Посты` WHERE `Посты`.`id_концерта`=`Концерты`.`id` ORDER BY `Концерты`.`дата_время_начала` DESC");
 
-$sql1 = mysqli_query($con, "SELECT * FROM `Город` ORDER BY `имя`");
+// $sql1 = mysqli_query($con, "SELECT * FROM `Город` ORDER BY `имя`");
 
-$sql2 = mysqli_query($con, "SELECT * FROM `Страна` ORDER BY `имя`");
+// $sql2 = mysqli_query($con, "SELECT * FROM `Страна` ORDER BY `имя`");
 
 $sql3 = mysqli_query($con,"SELECT `Группы`.`id` as `id`, `Группы`.`name` as `Имя`, `Представитель`.`имя` as `Представитель`, `Жанр_группы`.`имя` as `Жанр` FROM `Представитель`, `Группы`, `Жанр_группы` WHERE `Группы`.`id_agent`=`Представитель`.`id` AND `Группы`.`id_жанра`=`Жанр_группы`.`id` ORDER BY `Группы`.`name` ASC");
 
@@ -27,7 +27,7 @@ $sql6 = mysqli_query($con, "SELECT * FROM `Статус_переговоров` 
 
 $sql7 = mysqli_query($con, "SELECT `Концерты`.`id` as `id`, `Концерты`.`дата_время_начала` as `Дата`,  `название` as `Название`, `группы` as `Группы`, `Тип_концерта`.`имя` as `Тип`, `Условия_выступления`.`имя` as `Условия выступления`, `Концерты`.`комментарий` as `Комментарий`, `Концерты`.`расходы` as `Расходы`, `Статус_переговоров`.`имя`as `Статус переговоров`, `Концерты`.`афиша` as `Афиша` FROM `Концерты`, `Тип_концерта`,`Условия_выступления`, `Статус_переговоров` WHERE `Концерты`.`тип_концерта`=`Тип_концерта`.`id` AND `Концерты`.`условия`=`Условия_выступления`.`id` AND `Концерты`.`статус_переговоров`=`Статус_переговоров`.`id` ORDER BY `Дата` DESC");
 
-$sql8 = mysqli_query($con, "SELECT `Представитель`.`id` as `id`, `Представитель`.`имя` as `Имя`, `Представитель`.`телефон` as `Телефон`, `Город`.`имя` AS `Город` FROM `Представитель`, `Город` WHERE `Город`.`id` = `Представитель`.`id_города` ORDER BY `Представитель`.`имя` ASC");
+$sql8 = mysqli_query($con, "SELECT `id` as `id`, `имя` as `Имя`, `телефон` as `Телефон`, `город` AS `Город` FROM `Представитель` ORDER BY `имя` ASC");
 
 
 $sql9 = mysqli_query($con, "SELECT * FROM `Жанр_группы`");
@@ -99,13 +99,13 @@ while ($rows = mysqli_fetch_assoc($sql)) {
   $res_array[][] = $rows;
 }
 
-while ($rows = mysqli_fetch_assoc($sql1)) {
-  $city_array[][] = $rows;
-}
+// while ($rows = mysqli_fetch_assoc($sql1)) {
+//   $city_array[][] = $rows;
+// }
 
-while ($rows = mysqli_fetch_assoc($sql2)) {
-  $country_array[][] = $rows;
-}
+// while ($rows = mysqli_fetch_assoc($sql2)) {
+//   $country_array[][] = $rows;
+// }
 
 while ($rows = mysqli_fetch_assoc($sql3)) {
   $group_array[][] = $rows;
@@ -147,39 +147,39 @@ while ($rows = mysqli_fetch_assoc($archive_concerts)) {
 
 
 
-if (isset($_POST['btn_city'])) {
-    $city_name = $con->real_escape_string($_POST['city']);
-    $country_name = $con->real_escape_string($_POST['countries']);
+// if (isset($_POST['btn_city'])) {
+//     $city_name = $con->real_escape_string($_POST['city']);
+//     $country_name = $con->real_escape_string($_POST['countries']);
 
-    $country_id = mysqli_query($con, "SELECT `id` FROM `Страна` WHERE `имя`=\"$country_name\"");
+//     $country_id = mysqli_query($con, "SELECT `id` FROM `Страна` WHERE `имя`=\"$country_name\"");
 
-    foreach ($country_id as $c_id){
-      $country_id = $c_id['id'];
-    }
+//     foreach ($country_id as $c_id){
+//       $country_id = $c_id['id'];
+//     }
 
-    $city_add = mysqli_query($con, "INSERT INTO `Город` (`id`,`имя`, `id_страны`) VALUES (NULL,'$city_name', '$country_id')");
+//     $city_add = mysqli_query($con, "INSERT INTO `Город` (`id`,`имя`, `id_страны`) VALUES (NULL,'$city_name', '$country_id')");
 
-    if ($city_add) {
-      header("Refresh: 1;" ."/admin.php");
-      exit;
-    } else {
-      header("Refresh: 1;" ."/admin.php");
-      exit;
-    }
-}
+//     if ($city_add) {
+//       header("Refresh: 1;" ."/admin.php");
+//       exit;
+//     } else {
+//       header("Refresh: 1;" ."/admin.php");
+//       exit;
+//     }
+// }
 
 if (isset($_POST['btn_agents'])) {
   $agent_name = $con->real_escape_string($_POST['agent']);
   $phone = $con->real_escape_string($_POST['phone']);
   $city_name = $con->real_escape_string($_POST['cities']);
 
-  $city_id = mysqli_query($con, "SELECT `id` FROM `Город` WHERE `имя`=\"$city_name\"");
+  // $city_id = mysqli_query($con, "SELECT `id` FROM `Город` WHERE `имя`=\"$city_name\"");
 
-  foreach ($city_id as $c_id){
-    $city_id = $c_id['id'];
-  }
+  // foreach ($city_id as $c_id){
+  //   $city_id = $c_id['id'];
+  // }
 
-  $agent_add = mysqli_query($con, "INSERT INTO `Представитель` (`id`,`имя`, `телефон`, `id_города`) VALUES (NULL, '$agent_name', '$phone' ,'$city_id')");
+  $agent_add = mysqli_query($con, "INSERT INTO `Представитель` (`id`,`имя`, `телефон`, `город`) VALUES (NULL, '$agent_name', '$phone' ,'$city_name')");
 
   if ($agent_add) {
     header("Refresh: 1;" ."/admin.php");
@@ -368,12 +368,7 @@ if (isset($_POST['btn_edit'])) {
       $name = $con->real_escape_string($_POST['name_edit']);
       $phone = $con->real_escape_string($_POST['phone_edit']);
       $city = $con->real_escape_string($_POST['cities_edit']);
-      $city_id = mysqli_query($con, "SELECT `id` FROM `Город` WHERE `имя`=\"$city\"");
-
-      foreach ($city_id as $c_id){
-        $city_id = $c_id['id'];
-      }
-      $sql = mysqli_query($con, "UPDATE `Представитель` SET `имя`='$name', `телефон` = '$phone', `id_города`='$city_id' WHERE `Представитель`.`id` = '$id'");
+      $sql = mysqli_query($con, "UPDATE `Представитель` SET `имя`='$name', `телефон` = '$phone', `город`='$city' WHERE `Представитель`.`id` = '$id'");
       break;
 
     case "groups":

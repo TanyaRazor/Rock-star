@@ -163,11 +163,7 @@ $(document).ready(function() {
 });
 
 function toggleButton() {
-    $input_city = $('#input_city').val();
-    $select_country = $('#countries').val();
-
     $input_agent = $('#agent').val();
-    $select_city = $('#cities').val();
 
     $name_group = $('#group').val();
     $select_agent = $('#agents').val();
@@ -182,13 +178,7 @@ function toggleButton() {
     $concerts_name = $("#concerts_name").val();
     $post = $("#post").val();
 
-    if ($input_city && $select_country) {
-        $('.add_city').attr('disabled', false);
-    } else {
-        $('.add_city').attr('disabled', true);
-    }
-
-    if ($input_agent && $select_city) {
+    if ($input_agent) {
         $('.add_agent').attr('disabled', false);
     } else {
         $('.add_agent').attr('disabled', true);
