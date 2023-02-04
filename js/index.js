@@ -170,9 +170,6 @@ function toggleButton() {
 
     $date = $('#date').val();
     $name_activity = $('#name_activity').val();
-    $groups = $('#groups_select').val();
-    $type_concert = $('#type_concert').val();
-    $conditions = $('#conditions').val();
     $status = $('#status').val();
 
     $concerts_name = $("#concerts_name").val();
@@ -190,7 +187,7 @@ function toggleButton() {
         $('.add_group').attr('disabled', true);
     }
 
-    if ($date && $name_activity && $groups && $type_concert && $conditions && $status) {
+    if ($date && $name_activity && $status) {
         $('.add_concert').attr('disabled', false);
     } else {
         $('.add_concert').attr('disabled', true);
